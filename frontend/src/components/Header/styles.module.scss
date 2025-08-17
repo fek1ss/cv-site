@@ -1,0 +1,31 @@
+header {
+  background: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  padding: 0 5rem;
+  
+  .header__logo {
+    width: 50%;
+    font-weight: 400;
+    font-size: 25px;
+  }
+
+  .header__list {
+    display: flex;
+    align-items: center;
+  }
+
+  .header__list_item {
+    margin: 12px;
+    font-size: 17px;
+    cursor: pointer;
+  }
+
+  .header__list_item:hover {
+    color: #7189c3;
+    transition: 0.4s;
+  }
+}

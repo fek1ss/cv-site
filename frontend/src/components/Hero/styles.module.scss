@@ -1,0 +1,24 @@
+.hero {
+  font-family: 'Roboto',serif;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin: 6rem 0;
+
+  &__avatar {
+    width: 250px;
+  }
+
+
+  &__name {
+    font-size: 27px;
+    font-weight: 500;
+  }
+
+  &__text {
+    width: 500px;
+  }
+}

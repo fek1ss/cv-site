@@ -1,0 +1,24 @@
+.about {
+    font-family: 'Roboto',serif;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  &__info {
+background-color: rgba(12,12,12, 0.6);    
+    width: 80%;
+    height: 500px;
+    padding: 0 50px;
+    border-radius: 10px;
+  }
+
+  &__title {
+    font-weight: 400;
+    color: white;
+  }
+
+  &__text {
+
+  }
+}
