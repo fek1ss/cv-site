@@ -14,7 +14,7 @@ const Aboutme = () => {
     }
   },[])
   return (
-    <section className={styles.about}>
+    <section className={styles.about} id='about'>
       <div className={styles.about__info}>
         <h1 className={styles.about__title}>About me</h1>
         <p className={styles.about__text}>

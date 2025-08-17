@@ -23,12 +23,20 @@
   background-color: var(--background-color);
   background-repeat: no-repeat;
   
-  
 }
+
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
 
 * {
   list-style-type: none;
+  text-decoration: none;
 }
+
+
 
 :root::before,
 :root::after {

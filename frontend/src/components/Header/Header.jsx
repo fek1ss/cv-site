@@ -6,9 +6,9 @@ const Header = () => {
       <h1 className={styles.header__logo}>Portfolio</h1>
       <nav>
         <ul className={styles.header__list}>
-          <li className={styles.header__list_item}>About me</li>
-          <li className={styles.header__list_item}>Skills & Experience</li>
-          <li className={styles.header__list_item}>Articles</li>
+          <li><a className={styles.header__list_item} href="#about">About me</a></li>
+          <li><a className={styles.header__list_item} href="#skills">Skills & Experience</a></li>
+          <li><a className={styles.header__list_item} href="#articles">Articles</a></li>
         </ul>
       </nav>
     </header>

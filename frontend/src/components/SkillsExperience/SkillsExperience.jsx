@@ -4,7 +4,7 @@ import Experience from './../Experience/Experience';
 
 const SkillsExperience = () => {
   return (
-    <section className={styles.container}>
+    <section className={styles.container} id='skills'>
       <Skills />
       <Experience />
     </section>

@@ -1,0 +1,50 @@
+.articles {
+  width: 90%;
+  margin: 5rem auto;
+
+  &__art {
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    margin: 2rem;
+    min-height: 80px;
+    background-color: var(--text-color);
+  }
+  
+  &__title {
+    color: var(--background-color);
+    font-size: 23px;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+  }
+
+  &__title::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background-color: #04152D; 
+    transition: width 0.5s; 
+  }
+
+  &__title:hover {
+    color: #204476;
+  }
+
+  &__title:hover:after {
+    
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 2px; /* Высота линии */
+    background-color: red; /* Цвет подчеркивания при появлении линии*/
+    transition: width 0.5s;  /* Время эффекта */
+  }
+}
