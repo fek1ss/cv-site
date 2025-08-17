@@ -1,8 +1,34 @@
+import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
+import { getSkills } from '../../api/skillsApi';
 
 const Skills = () => {
+  const [skills, setSkills] = useState([]);
+
+  useEffect(()=> {
+    try{
+      getSkills()
+      .then(data => {
+        setSkills(data)
+      })
+    } catch(err) {
+      console.log(err)
+    }
+  })
   return (
-    
+    <div className={styles.skills}>
+      <h1 className={styles.skills__title}>Skills</h1>
+      <div className={styles.skills__items}>
+        {skills.map(skill => (
+          <div className={styles.skills__item}>
+            <div className={styles.skills__icon} key={skill.id}>
+              <img src={skill.iconUrl} width={90} alt="icon"  />
+            </div>
+            <p>{skill.name}</p>
+          </div>  
+        ))}
+      </div>
+    </div>
   )
 }
 

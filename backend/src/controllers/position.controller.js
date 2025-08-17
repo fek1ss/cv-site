@@ -6,7 +6,7 @@ export const getPositions = async (req, res) => {
   const sql = `
     SELECT p.id as positionId, p.title, p.startDate, p.endDate,
           c.id as companyId, c.name as companyName
-    FROM Position p
+    FROM positions p
     JOIN Company c ON p.companyId = c.id
     ORDER BY p.startDate DESC
   `;
@@ -34,10 +34,10 @@ export const createPosition = async (req, res) => {
   const { title, startDate, endDate, companyId } = req.body;
   try {
     const [result] = await connection.query(
-      "INSERT INTO Position (title, startDate, endDate, companyId) VALUES (?, ?, ?, ?)",
+      "INSERT INTO positions (title, startDate, endDate, companyId) VALUES (?, ?, ?, ?)",
       [title, startDate, endDate, companyId]
     );
-    res.json({ message: "Position created", positionId: result.insertId });
+    res.json({ message: "positions created", positionId: result.insertId });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -49,7 +49,7 @@ export const updatePosition = async (req, res) => {
   const { title, startDate, endDate, companyId } = req.body;
   try {
     await connection.query(
-      "UPDATE Position SET title=?, startDate=?, endDate=?, companyId=? WHERE id=?",
+      "UPDATE positions SET title=?, startDate=?, endDate=?, companyId=? WHERE id=?",
       [title, startDate, endDate, companyId, id]
     );
     res.json({ message: "Position updated" });
@@ -62,7 +62,7 @@ export const updatePosition = async (req, res) => {
 export const deletePosition = async (req, res) => {
   const { id } = req.params;
   try {
-    await connection.query("DELETE FROM Position WHERE id=?", [id]);
+    await connection.query("DELETE FROM positions WHERE id=?", [id]);
     res.json({ message: "Position deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

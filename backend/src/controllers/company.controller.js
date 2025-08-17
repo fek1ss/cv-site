@@ -7,7 +7,7 @@ export const getCompanies = async (req, res) => {
     SELECT c.id as companyId, c.name as companyName, c.logoUrl,
           p.id as positionId, p.title, p.startDate, p.endDate
     FROM Company c
-    LEFT JOIN Position p ON c.id = p.companyId
+    LEFT JOIN positions p ON c.id = p.companyId
     ORDER BY c.id, p.startDate DESC
   `;
 
