@@ -48,7 +48,7 @@ const Experience = () => {
                   </div>
                   {
                     exp.positions.map(pos => (
-                      <div className={styles.exps__positions}>
+                      <div className={styles.exps__positions} key={pos.id}>
                         <h3 className={styles.exps__name}>{pos.title}</h3>
                         <p className={styles.exps__date}>
                           Date: {formatDateRange(pos.startDate, pos.endDate)}
@@ -65,8 +65,6 @@ const Experience = () => {
           </div>
         ))}
       </div>
-      
-          
     </div>
   )
 }

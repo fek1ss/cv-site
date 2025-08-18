@@ -2,6 +2,10 @@
   margin: 0 auto;
   width: 50%;
 
+  h1 {
+    margin-bottom: 2rem;
+  }
+
   &__experinces {
     display: flex;
     flex-direction: column;
@@ -50,5 +54,14 @@
 
   &__positions {
     margin: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .exps {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
 }

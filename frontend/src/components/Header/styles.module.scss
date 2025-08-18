@@ -1,21 +1,29 @@
 header {
+  position: relative;
+  z-index: 100;
   background: none;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   position: relative;
   z-index: 10;
-  padding: 0 5rem;
+  margin-top: 3rem;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+  }
   
   .header__logo {
-    width: 50%;
     font-weight: 400;
     font-size: 25px;
   }
 
   .header__list {
     display: flex;
-    align-items: center;
+    align-items: end;
   }
 
   .header__list_item {
@@ -30,3 +38,19 @@ header {
     transition: 0.4s;
   }
 }
+
+
+@media (max-width: 785px) {
+  header {
+    .wrapper {
+      justify-content: start;
+    }
+
+    nav {
+      display: none;
+    }
+  }
+}
+
+
+

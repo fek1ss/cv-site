@@ -9,6 +9,7 @@ import companyRouter from "./routes/company.routes.js";
 import positionRouter from "./routes/position.routes.js";
 import articleRouter from "./routes/article.routes.js";
 import contactRouter from "./routes/contact.routes.js";
+import userRouter from "./routes/user.routes.js";
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use("/api/company", companyRouter);
 app.use("/api/position", positionRouter);
 app.use("/api/articles", articleRouter);
 app.use("/api/contact", contactRouter);
+app.use("/api/users", userRouter);
 
 const PORT = 5000;
 app.listen(PORT, () => {

@@ -20,7 +20,7 @@ const Skills = () => {
       <h1 className={styles.skills__title}>Skills</h1>
       <div className={styles.skills__items}>
         {skills.map(skill => (
-          <div className={styles.skills__item}>
+          <div className={styles.skills__item} key={skill.id}>
             <div className={styles.skills__icon} key={skill.id}>
               <img src={skill.iconUrl} width={90} alt="icon"  />
             </div>

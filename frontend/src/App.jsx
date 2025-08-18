@@ -1,20 +1,17 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Admin from './page/Admin/Admin';
+import Home from './page/Home/Home';
+import Login from './page/Login/Login';
 
-import Header from './components/Header/Header';
-import Hero from './components/Hero/Hero';
-import Aboutme from './components/Aboutme/Aboutme';
-import Skills from './components/Skills/Skills';
-import SkillsExperience from './components/SkillsExperience/SkillsExperience';
-import Articles from './components/Articles/Articles';
 function App() {
-
   return (
-    <>
-      <Header />
-      <Hero />
-      <Aboutme />
-      <SkillsExperience />
-      <Articles />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/admin' element={<Admin />} />
+        <Route path='/login' element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

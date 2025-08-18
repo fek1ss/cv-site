@@ -4,6 +4,18 @@ import { getArticles } from '../../api/articles';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
+  const [visibleCount, setVisibleCount] = useState(10);
+  const [flag, setFlag] = useState(false);
+
+  const showMore = () => {
+    setVisibleCount(prev => prev + 5);
+    setFlag(prev => !prev)
+  }
+
+  const showLess = () => {
+    setVisibleCount(prev => prev - 5);
+    setFlag(prev => !prev)
+  }
 
   useEffect(()=> {
     getArticles()
@@ -12,18 +24,31 @@ const Articles = () => {
 
   return (
     <div className={styles.articles} id='articles'>
-      <h1 style={{fontWeight:400}}>Articles</h1>
-      {
-        articles.map(art => (
-          <div className={styles.articles__art} key={art.id}>
-            <a href={art.link}  target="_blank">
-              <h1 className={styles.articles__title}>
-                {art.title} 
-              </h1>
-            </a>
-          </div>
-        ))
-      }
+      <div className={styles.articles__wrapper}>
+        <h1 style={{fontWeight:400}}>Articles</h1>
+        {
+          articles.slice(0, visibleCount).map(art => (
+            <div className={styles.articles__art} key={art.id}>
+              <a href={art.link}  target="_blank">
+                <h1 className={styles.articles__title}>
+                  {art.title} 
+                </h1>
+              </a>
+            </div>
+          ))
+        }
+        {
+          visibleCount < articles.length && (
+            <p onClick={showMore} className={styles.articles__more}>show more</p>
+          ) 
+        }
+
+        {
+          flag && (
+            <p onClick={showLess}  className={styles.articles__more}>hide</p>
+          )
+        }
+      </div>
     </div>
   )
 }

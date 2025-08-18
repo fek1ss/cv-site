@@ -22,7 +22,6 @@
   position: relative;
   background-color: var(--background-color);
   background-repeat: no-repeat;
-  
 }
 
 html, body {
@@ -32,32 +31,46 @@ html, body {
 
 
 * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
   list-style-type: none;
   text-decoration: none;
 }
 
 
+/* Отдельный контейнер для декора */
+.decor {
+  position: fixed;
+  inset: 0;             /* растягиваем на весь экран */
+  pointer-events: none; /* чтобы не мешал кликам */
+  z-index: -1;          /* за контентом */
+  overflow: hidden;     /* ничего лишнего не выползает */
+}
 
-:root::before,
-:root::after {
+/* Сами кружочки */
+.decor::before,
+.decor::after {
   content: '';
   width: 500px;
   height: 500px;
   position: absolute;
-  background: radial-gradient(circle, rgba(54, 78, 122, 0.6) 0%, rgba(4, 21, 45, 0) 70%);
-  pointer-events: none;
+  background: radial-gradient(circle, rgba(79, 97, 130, 0.6) 0%, rgba(4, 21, 45, 0) 70%);
 }
 
-:root::after {
-  top: -210px; 
-  left: -210px;
+/* Один кружок слева */
+.decor::before {
+  top: -30%;
+  left: 10%;
+  transform: translateX(-50%); /* половина за экраном */
 }
 
-:root::before {
-  top: 100px;
-  right: -250px;
-  width: 500px;  /* можно другой размер */
-  height: 500px;
+/* Второй кружок справа */
+.decor::after {
+  bottom: -20%;
+  right: 0;
+  transform: translateX(50%);
 }
+
 
 

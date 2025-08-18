@@ -22,12 +22,14 @@ const Hero = () => {
 
   return (
     <section className={styles.hero}>
-      <img src={img} alt="avatar img" className={styles.hero__avatar} />
-      <div className={styles.hero__intro}>
-        <h1 className={styles.hero__name}>{name}</h1>
-        <p className={styles.hero__text}>
-          {text}
-        </p>
+      <div className={styles.hero__wrapper}>
+        <img src={img} alt="avatar img" className={styles.hero__avatar} />
+        <div className={styles.hero__intro}>
+          <h1 className={styles.hero__name}>{name}</h1>
+          <p className={styles.hero__text}>
+            {text}
+          </p>
+        </div>
       </div>
     </section>
   )

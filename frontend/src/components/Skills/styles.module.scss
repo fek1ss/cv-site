@@ -4,6 +4,7 @@
 
   &__title {
     font-weight: 400;
+    margin-bottom: 2rem;
   }
 
   &__items {
@@ -27,5 +28,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media (max-width: 845px) {
+  .skills {
+    width: 40%;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+
+    &__title {
+      font-size: 27px;
+    }
+
+    &__items {
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__icon {
+      width: 90px;
+      height: 90px;
+    }
+
+    &__icon img {
+      width: 60px;
+    }
   }
 }
