@@ -29,6 +29,50 @@
     justify-content: center;
     align-items: center;
   }
+
+  // admin panel 
+  &__item_adm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__icon_adm {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgb(36, 71, 136) 50%, rgba(4, 21, 45, 0) 70%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__icon_adm:hover {
+    background: radial-gradient(circle, rgb(37, 84, 170) 50%, rgba(4, 21, 45, 0) 70%);
+  }
+}
+
+.skills_adm {
+  width: 70%;
+  margin: 2rem auto;
+}
+
+.skills_btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: none;
+  width: 110px;
+  height: 110px;
+  border: 5px solid white;
+  font-size: 4rem;
+  border-radius: 50%;
+  margin: auto 0;
+  cursor: pointer;
+  
 }
 
 @media (max-width: 845px) {

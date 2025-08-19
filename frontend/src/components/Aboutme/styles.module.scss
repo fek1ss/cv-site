@@ -19,7 +19,14 @@
     color: white;
     margin: 2rem 0 1rem 0;
   }
+
+  // admin panel 
+  &__adminAbout {
+  margin: 2rem 1rem;
+  }
 }
+
+
 
 @media (max-width: 667px) {
   .about {

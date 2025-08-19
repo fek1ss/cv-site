@@ -6,6 +6,17 @@ export const getHero = async() => {
   return res.json();
 }
 
-// const updateHero = async() => {
-  
-// }
+export const updateHero = async(formData) => {
+  try {
+    const res = await fetch(`${API_URL}/api/hero/1`,{
+      method: 'PATCH',
+      body: formData
+    });
+
+    if (!res.ok) throw new Error("Something went wrong...");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+}

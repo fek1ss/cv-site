@@ -11,7 +11,6 @@ export const login = async({email, password}) => {
     if(!res.ok) throw new Error("Invalid email or password");
 
     const data = await res.json();
-
     localStorage.setItem("token", data.token)
     
     return data;

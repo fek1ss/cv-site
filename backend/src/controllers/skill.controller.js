@@ -22,19 +22,30 @@ export const createSkill = async (req, res) => {
   }
 };
 
+
 export const updateSkill = async (req, res) => {
   const { id } = req.params;
-  const { name, iconUrl } = req.body;
+  const { name } = req.body; 
+  const file = req.file; 
+
   try {
+    let iconUrl = null;
+
+    if (file) {
+      iconUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
     await connection.query(
       "UPDATE Skill SET name=?, iconUrl=? WHERE id=?",
       [name, iconUrl, id]
     );
-    res.json({ message: "Skill updated" });
+
+    res.json({ message: "Skill updated", iconUrl });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 export const deleteSkill = async (req, res) => {
   const { id } = req.params;

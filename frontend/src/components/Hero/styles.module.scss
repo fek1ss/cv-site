@@ -19,8 +19,17 @@
     width: 80%;
   }
 
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
   &__avatar {
     width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 50%;
   }
 
   &__name {
@@ -30,6 +39,31 @@
 
   &__text {
     max-width: 500px;
+  }
+
+  // admin panel 
+
+  &_adm {
+    font-family: 'Roboto',serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+  }
+  &__photo {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    padding-top: 6rem;
+  }
+  &__intro_adm {
+    width: 70%;
+  }
+  &__text_adm {
+    height: 300px;
+    width: 100%;
   }
 }
 

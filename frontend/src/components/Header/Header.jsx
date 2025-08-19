@@ -1,11 +1,14 @@
+import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header>
       <div className="decor"></div>
       <div className={styles.wrapper}>
-        <h1 className={styles.header__logo}>Portfolio</h1>
+        <h1 className={styles.header__logo} onClick={()=>navigate('/admin')}>Portfolio</h1>
         <nav>
           <ul className={styles.header__list}>
             <li><a className={styles.header__list_item} href="#about">About me</a></li>

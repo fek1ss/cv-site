@@ -27,15 +27,34 @@ export const createHero = async (req, res) => {
 // PUT /api/hero/:id
 export const updateHero = async (req, res) => {
   const { id } = req.params;
-  const { name, photoUrl, summary } = req.body;
+  const { name, summary } = req.body;
+
   try {
-    await connection.query(
-      "UPDATE Hero SET name=?, photoUrl=?, summary=? WHERE id=?",
-      [name, photoUrl, summary, id]
-    );
-    res.json({ message: "Hero updated" });
+    let photoUrl = null;
+
+    // если файл загружен — берем его путь
+    if (req.file) {
+      photoUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
+    // если файл загружен — обновляем вместе с фото
+    if (photoUrl) {
+      await connection.query(
+        "UPDATE Hero SET name=?, summary=?, photoUrl=? WHERE id=?",
+        [name, summary, photoUrl, id]
+      );
+    } else {
+      // если фото не передавалось, обновляем только текст
+      await connection.query(
+        "UPDATE Hero SET name=?, summary=? WHERE id=?",
+        [name, summary, id]
+      );
+    }
+
+    res.json({ message: "Hero updated successfully" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Update Hero error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 };
 

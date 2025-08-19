@@ -5,7 +5,7 @@ import connection from "../db.js";
 export const getCompanies = async (req, res) => {
   const sql = `
     SELECT c.id as companyId, c.name as companyName, c.logoUrl,
-          p.id as positionId, p.title, p.startDate, p.endDate
+    p.id as positionId, p.title, p.startDate, p.endDate
     FROM Company c
     LEFT JOIN positions p ON c.id = p.companyId
     ORDER BY c.id, p.startDate DESC
