@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { getSkills } from '../../api/skillsApi';
+import { motion } from 'framer-motion';
+
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
@@ -16,7 +18,13 @@ const Skills = () => {
     }
   })
   return (
-    <div className={styles.skills}>
+    <motion.div className={styles.skills}
+        initial={{ x: -150, opacity: 0 }}        
+        whileInView={{ x: 0, opacity: 1 }}       
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.2 }}
+      >
+          
       <h1 className={styles.skills__title}>Skills</h1>
       <div className={styles.skills__items}>
         {skills.map(skill => (
@@ -28,7 +36,7 @@ const Skills = () => {
           </div>  
         ))}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

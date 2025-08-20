@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import styles from '../../components/Aboutme/styles.module.scss';
 import { getAbout, updateAbout } from "../../api/aboutApi";
 
-const AdminAbout = () => {
+const AboutAdmin = () => {
   const [text, setText] = useState("");
   const [message, setMessage] = useState('');
   const navigate = useNavigate();
@@ -57,4 +57,4 @@ const AdminAbout = () => {
   )
 }
 
-export default AdminAbout;
+export default AboutAdmin;

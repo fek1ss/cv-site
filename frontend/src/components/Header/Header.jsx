@@ -1,11 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 import styles from './styles.module.scss';
+import { motion } from 'framer-motion';
+
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header>
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}      
+      animate={{ y: 0, opacity: 1 }}         
+      transition={{ duration: 0.8, ease: "easeOut" }} 
+    >
       <div className="decor"></div>
       <div className={styles.wrapper}>
         <h1 className={styles.header__logo} onClick={()=>navigate('/admin')}>Portfolio</h1>
@@ -18,7 +24,7 @@ const Header = () => {
           </ul>
         </nav>
       </div>
-    </header>
+    </motion.header>
   )
 }
 

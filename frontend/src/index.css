@@ -39,16 +39,13 @@ html, body {
 }
 
 
-/* Отдельный контейнер для декора */
 .decor {
-  position: fixed;
-  inset: 0;             /* растягиваем на весь экран */
-  pointer-events: none; /* чтобы не мешал кликам */
-  z-index: -1;          /* за контентом */
-  overflow: hidden;     /* ничего лишнего не выползает */
+  inset: 0;            
+  pointer-events: none; 
+  overflow: hidden;   
+  z-index: -1;  
 }
 
-/* Сами кружочки */
 .decor::before,
 .decor::after {
   content: '';
@@ -58,18 +55,21 @@ html, body {
   background: radial-gradient(circle, rgba(79, 97, 130, 0.6) 0%, rgba(4, 21, 45, 0) 70%);
 }
 
-/* Один кружок слева */
-.decor::before {
-  top: -30%;
-  left: 10%;
-  transform: translateX(-50%); /* половина за экраном */
+@media (max-width: 667px) {
+  .decor{
+    display: none;
+  }
 }
 
-/* Второй кружок справа */
+.decor::before {
+  top: -80%;
+  left: -15%;
+  transform: translateY(-40%);
+}
+
 .decor::after {
-  bottom: -20%;
-  right: 0;
-  transform: translateX(50%);
+  right: -20%;
+  transform: translateY(20%);
 }
 
 .success-message {

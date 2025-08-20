@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { getHero } from '../../api/heroApi';
+import { motion } from 'framer-motion';
+
 
 const Hero = () => {
   const [name, setName] = useState("");
@@ -23,13 +25,25 @@ const Hero = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.hero__wrapper}>
-        <img src={img} alt="avatar img" className={styles.hero__avatar} />
-        <div className={styles.hero__intro}>
+        <motion.img 
+        alt="avatar img"
+        initial={{ x: -200, opacity: 0 }}       
+        animate={{ x: 0, opacity: 1 }}         
+        transition={{ duration: 1, ease: "easeOut" }}
+        src={img} 
+        className={styles.hero__avatar}  />
+        
+        <motion.div 
+        initial={{ x: 200, opacity: 0 }}       
+        animate={{ x: 0, opacity: 1 }}         
+        transition={{ duration: 1, ease: "easeOut" }}
+        className={styles.hero__intro}
+        >
           <h1 className={styles.hero__name}>{name}</h1>
           <p className={styles.hero__text}>
             {text}
           </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

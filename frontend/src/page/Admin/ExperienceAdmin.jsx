@@ -1,36 +1,54 @@
 import { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
+import styles from '../../components/Experience/styles.module.scss';
 import { getExperience } from '../../api/experience';
-import { formatDateRange } from './../../utils/date';
-import { motion } from 'framer-motion';
+import { formatDateRange } from '../../utils/date';
+import NewExperience from './../../components/NewExperience/NewExperience';
+import NewPosition from '../../components/NewExperience/NewPosition';
 
-
-const Experience = () => {
+const ExperienceAdmin = () => {
   const [experiences, setExperiences] = useState([]);
+  const [isCreate, setIsCreate] = useState(false);
+  const [companyId, setCompanyId] = useState(null);
+  
+    useEffect(()=> {
+      loadExp();
+    },[])
 
-  useEffect(()=> {
-    try {
-      getExperience()
-        .then(data => {
-          setExperiences(data)
-        })
-        
-    } catch(err) {
-      console.log(err)
+    const loadExp = async() => {
+      try {
+        const data = await getExperience();
+        setExperiences(data);
+      } catch (err) {
+        console.log("Error when receiving data")
+      }
     }
-  },[])
+
+    
 
   return (
-    <motion.div className={styles.exps}
-        initial={{ x: 200, opacity: 0 }}        
-        whileInView={{ x: 0, opacity: 1 }}       
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        viewport={{ once: true, amount: 0.2 }}
-    >
+    <div className={styles.exps_adm}>
       <h1 style={{fontWeight:400}}>Experience</h1>
-      <div className={styles.exps__experinces}>
+      <div 
+        className={styles.exps_adm__create} 
+        onClick={()=>setIsCreate(prev => !prev)}
+      >
+        {isCreate ? "cancel":"add experience"}
+      </div>
+      
+      {/* Создание компании  */}
+      {
+        isCreate  && (<NewExperience onCompanyId={setCompanyId} />)
+      }
+
+      {/* Создание позиции к этой компании  */}
+      {
+        companyId && (
+          <NewPosition />
+        )
+      }
+      <div className={`${styles.exps__experiences} ${styles.exps_adm__cards}`}>
         {experiences.map(exp => (
-          <div className={styles.exps__exp_card} key={exp.id}>
+          <div className={`${styles.exps__exp_card} ${styles.exps_adm__card}`} key={exp.id}>
             {
               exp.positions.length === 1 ? (
                 <>
@@ -63,17 +81,14 @@ const Experience = () => {
                       </div>
                     ))
                   }
-                  
                 </>
               )
             }
-            
-            
           </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
-export default Experience;
+export default ExperienceAdmin;

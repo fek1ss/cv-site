@@ -46,17 +46,32 @@ export const getCompanies = async (req, res) => {
 
 // POST /api/company
 export const createCompany = async (req, res) => {
-  const { name, logoUrl } = req.body;
+  const { name } = req.body;
+
   try {
+    let logoUrl = null;
+
+    // если был загружен файл
+    if (req.file) {
+      logoUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
     const [result] = await connection.query(
       "INSERT INTO Company (name, logoUrl) VALUES (?, ?)",
       [name, logoUrl]
     );
-    res.json({ message: "Company created", companyId: result.insertId });
+
+    res.json({ 
+      message: "Company created", 
+      companyId: result.insertId,
+      logoUrl 
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Create Company error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 };
+
 
 // PUT /api/company/:id
 export const updateCompany = async (req, res) => {

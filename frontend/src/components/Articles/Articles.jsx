@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { getArticles } from '../../api/articles';
+import { motion } from 'framer-motion';
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -23,7 +24,12 @@ const Articles = () => {
   },[])
 
   return (
-    <div className={styles.articles} id='articles'>
+    <motion.div className={styles.articles} id='articles'
+      initial={{ y: 200, opacity: 0 }}   // снизу
+      whileInView={{ y: 0, opacity: 1 }} // встает на место
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+    >
       <div className={styles.articles__wrapper}>
         <h1 style={{fontWeight:400}}>Articles</h1>
         {
@@ -49,7 +55,7 @@ const Articles = () => {
           )
         }
       </div>
-    </div>
+    </motion.div>
   )
 }
 

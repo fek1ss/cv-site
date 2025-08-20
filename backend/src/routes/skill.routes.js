@@ -4,10 +4,8 @@ import upload from '../middleware/upload.js';
 
 const router = Router();
 
-
-
 router.get("/", getSkills);
-router.post("/", createSkill);
+router.post("/", upload.single("icon"), createSkill);
 router.patch("/:id", upload.single("icon"), updateSkill);
 router.delete("/:id", deleteSkill);
 

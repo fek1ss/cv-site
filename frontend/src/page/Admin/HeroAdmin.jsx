@@ -4,7 +4,7 @@ import { getHero, updateHero } from '../../api/heroApi';
 import { useNavigate } from 'react-router-dom';
 import { me } from '../../api/userApi';
 
-const AdminHero = () => {
+const HeroAdmin = () => {
   const [name, setName] = useState("");
   const [summary, setSummary] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -71,4 +71,4 @@ const AdminHero = () => {
   )
 }
 
-export default AdminHero; 
+export default HeroAdmin; 

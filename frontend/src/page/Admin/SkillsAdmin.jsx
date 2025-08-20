@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { getSkills, updateSkills } from "../../api/skillsApi";
+import { addSkill, deleteSkill, getSkills, updateSkills } from "../../api/skillsApi";
 import styles from '../../components/Skills/styles.module.scss';
 import { useNavigate } from "react-router-dom";
 import SkillModal from "../../components/SkillModal/SkillModal";
 
-const AdminSkills = () => {
+const SkillsAdmin = () => {
   const [skills, setSkills] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState(null);
   const navigate = useNavigate();
@@ -23,6 +23,16 @@ const AdminSkills = () => {
     }
   }
 
+  const handleDelete = async(id) => {
+    try {
+      await deleteSkill(id);
+      setSelectedSkills(null);
+      loadSkills();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   const handleUpdate = async(formData) => {
     try {
       await updateSkills(formData);
@@ -33,6 +43,15 @@ const AdminSkills = () => {
     }
   }
 
+  const handleCreate = async(formData) => {
+    try {
+      await addSkill(formData);
+      setSelectedSkills(null);
+      loadSkills();
+    } catch (err) {
+      console.log(err)
+    }
+  }
   return (
     <>
       <p className="back" onClick={()=> navigate(-1)}>Back</p>
@@ -47,7 +66,7 @@ const AdminSkills = () => {
             <p>{skill.name}</p>
           </div>  
         ))}
-        <button className={styles.skills_btn}>+</button>
+        <button className={styles.skills_btn} onClick={()=> setSelectedSkills({})}>+</button>
       </div>
     </div>
     {
@@ -55,6 +74,8 @@ const AdminSkills = () => {
         <SkillModal 
         onUpdate={handleUpdate} 
         onClose={()=>setSelectedSkills(null)}  
+        onDelete={handleDelete}
+        onCreate={handleCreate}
         skill={selectedSkills}
         />
       )
@@ -63,4 +84,4 @@ const AdminSkills = () => {
   )
 }
 
-export default AdminSkills;
+export default SkillsAdmin;
