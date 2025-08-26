@@ -73,20 +73,28 @@ export const createCompany = async (req, res) => {
 };
 
 
-// PUT /api/company/:id
 export const updateCompany = async (req, res) => {
   const { id } = req.params;
-  const { name, logoUrl } = req.body;
+  const { name } = req.body; 
+
   try {
+    let logoUrl = null;
+
+    if (req.file) {
+      logoUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
     await connection.query(
-      "UPDATE Company SET name=?, logoUrl=? WHERE id=?",
+      "UPDATE Company SET name=?, logoUrl=COALESCE(?, logoUrl) WHERE id=?",
       [name, logoUrl, id]
     );
-    res.json({ message: "Company updated" });
+
+    res.json({ message: "Company updated", logoUrl });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 // DELETE /api/company/:id
 export const deleteCompany = async (req, res) => {

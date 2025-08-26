@@ -30,6 +30,11 @@
     align-items: center;
   }
 
+  &__img {
+    border-radius: 50%;
+    width: 90px;
+  }
+
   // admin panel 
   &__item_adm {
     display: flex;
@@ -52,11 +57,22 @@
   &__icon_adm:hover {
     background: radial-gradient(circle, rgb(37, 84, 170) 50%, rgba(4, 21, 45, 0) 70%);
   }
+
+  &__newSkill {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+
+    p {
+      text-align: center;
+    }
+  }
 }
 
 .skills_adm {
   width: 70%;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 .skills_btn {

@@ -17,6 +17,7 @@ export const updateSkills = async({id, name, icon}) => {
     });
 
     if(!res.ok) throw new Error("Something wrong...");
+    
     const data = await res.json();
     return data;
   } catch (err) {
@@ -49,3 +50,4 @@ export const addSkill = async({name, icon}) => {
     console.log(err)
   }
 }
+

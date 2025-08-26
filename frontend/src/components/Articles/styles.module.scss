@@ -2,7 +2,7 @@
   position: relative;
   z-index: 100;
   width: 100%;
-  margin: 5rem auto;
+  margin: 3rem 0;
 
   &__wrapper {
     width: 80%;
@@ -21,7 +21,7 @@
   }
   
   &__title {
-    color: var(--background-color);
+    color: var(--footer-background);
     font-size: 23px;
     cursor: pointer;
     text-decoration: none;
@@ -41,7 +41,7 @@
   }
 
   &__title:hover {
-    color: #204476;
+    color: #5a84bf;
   }
 
   &__title:hover:after {
@@ -59,6 +59,51 @@
   &__more {
     cursor: pointer;
     color: rgb(138, 200, 224);
+  }
+}
+
+// admin panel
+.articles_adm {
+  &__artItem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    padding: 1rem;
+    min-height: 80px;
+    background-color: var(--text-color);
+  }
+
+  label {
+    color: black;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    width: 90%;
+  }
+
+  &__inp {
+    width: 70%;
+    font-weight: 600;
+    color: var(--footer-background);
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
+    background-color: var(--text-color);
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

@@ -1,13 +1,13 @@
 .about {
   position: relative;
   z-index: 100;
-  font-family: 'Roboto',serif;
+  font-family: 'Roboto', serif;
   width: 100%;
   display: flex;
   justify-content: center;
 
   &__info {
-    background-color: rgba(12,12,12, 0.6);    
+    background-color: rgba(12, 12, 12, 0.6);
     width: 80%;
     min-height: 500px;
     padding: 0 50px;
@@ -20,17 +20,24 @@
     margin: 2rem 0 1rem 0;
   }
 
-  // admin panel 
+  // admin panel
   &__adminAbout {
-  margin: 2rem 1rem;
+    margin: 2rem 1rem;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    p {
+      text-align: center;
+    }
   }
 }
 
-
-
 @media (max-width: 667px) {
   .about {
-
     &__info {
       width: 90%;
     }

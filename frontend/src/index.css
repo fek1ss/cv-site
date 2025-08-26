@@ -72,12 +72,14 @@ html, body {
   transform: translateY(20%);
 }
 
+.error-message {
+  color: red;
+}
+
 .success-message {
   color: rgb(45, 150, 21);
   width: 100%;
   text-align: center;
-  padding: 0.5rem;
-  background: none;
   margin: 0 auto;
 }
 
@@ -86,6 +88,16 @@ html, body {
   cursor: pointer;
   padding: 0.5rem;
   background-color: rgb(90, 122, 226);
+  border: none;
+  border-radius: 10px;
+  min-width: 100px;
+  margin: 1rem 0;
+}
+
+.delete-btn {
+  cursor: pointer;
+  padding: 5px;
+  background-color: rgb(230, 15, 15);
   border: none;
   border-radius: 10px;
   width: 100px;
@@ -105,11 +117,36 @@ html, body {
 }
 
 .back {
-  margin: 1rem 2rem;
-  background: none;
-  border: none;
+  margin: 2rem 3rem;  
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 200;
   cursor: pointer;
 }
+
+.adm {
+  width: 100%;
+}
+
+.hint {
+  color: rgb(246, 205, 4);
+  font-size: 15px;
+}
+
+input[type="date"] {
+    background-color: rgb(42, 104, 228);
+    padding: 2px 5px;
+    color: var(--text-color);
+    font-family: "Roboto Mono", monospace;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor:pointer;
+  }
+
+  ::-webkit-calendar-picker-indecator {
+    background-color: var(--text-color);
+    cursor: pointer;
+    border-radius: 3px;
+  }

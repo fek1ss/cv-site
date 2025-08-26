@@ -14,6 +14,7 @@ export const updateHero = async(formData) => {
     });
 
     if (!res.ok) throw new Error("Something went wrong...");
+    
     const data = await res.json();
     return data;
   } catch (err) {

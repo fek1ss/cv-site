@@ -25,7 +25,7 @@ const Contacts = () => {
             <li key={cont.id} className={styles.contacts__item}>
               <img src={cont.iconUrl} alt="icon social media" width={50} />
               <a href={cont.link} className={styles.contacts__label}>
-                {cont.link}
+                {cont.label}
               </a>
             </li>
           ))}

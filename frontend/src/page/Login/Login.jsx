@@ -1,45 +1,48 @@
-import { useState } from "react";
-import { login } from "../../api/userApi";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { login } from '../../api/userApi';
+import { useNavigate } from 'react-router-dom';
+import { useMessage } from '../../hooks/useMessage';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { message, showMessage } = useMessage();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const data = await login({email, password});
-      if(data) {
-        navigate('/admin');
-      } else {
-        setMessage('something wrong...')
-      }
-      
-      
+      await login({ email, password });
+      navigate('/admin');
     } catch (err) {
-      alert("Login failed: " + err.message);
+      showMessage(`Login failed ${err}`, true);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input 
-        type="email" 
+      <input
+        type="email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={e => setEmail(e.target.value)}
         placeholder="Email"
       />
-      <input 
-        type="password" 
+      <input
+        type="password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={e => setPassword(e.target.value)}
         placeholder="Password"
       />
       <button type="submit">Login</button>
-      <p>{message}</p>
+      {message && (
+        <p
+          className={
+            message.error ? 'error-message' : 'success-message'
+          }
+        >
+          {message?.text}
+        </p>
+      )}
     </form>
   );
 };

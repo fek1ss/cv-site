@@ -6,7 +6,7 @@ const router = Router();
 
 router.get("/", getCompanies);
 router.post("/", upload.single("icon"), createCompany);
-router.put("/:id", updateCompany);
+router.patch("/:id", upload.single("icon"), updateCompany);
 router.delete("/:id", deleteCompany);
 
 export default router;

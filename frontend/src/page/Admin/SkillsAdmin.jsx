@@ -1,29 +1,43 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { addSkill, deleteSkill, getSkills, updateSkills } from "../../api/skillsApi";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import {
+  addSkill,
+  deleteSkill,
+  getSkills,
+  updateSkills,
+} from '../../api/skillsApi';
 import styles from '../../components/Skills/styles.module.scss';
-import { useNavigate } from "react-router-dom";
-import SkillModal from "../../components/SkillModal/SkillModal";
+import { useNavigate } from 'react-router-dom';
+import SkillModal from '../../components/SkillModal/SkillModal';
+import { MdArrowBack } from 'react-icons/md';
+import { me } from '../../api/userApi';
+import { useMessage } from '../../hooks/useMessage';
 
 const SkillsAdmin = () => {
   const [skills, setSkills] = useState([]);
   const [selectedSkills, setSelectedSkills] = useState(null);
   const navigate = useNavigate();
+  const [status, setStatus] = useState(false);
+  const { message, showMessage } = useMessage();
 
-  useEffect(()=> {
-    loadSkills()
-  },[])
+  useEffect(() => {
+    me()
+      .then(() => setStatus(true))
+      .catch(() => navigate('/login'));
+
+    loadSkills();
+  }, [navigate]);
 
   const loadSkills = async () => {
     try {
       const data = await getSkills();
       setSkills(data);
-    } catch(err) {
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
-  const handleDelete = async(id) => {
+  const handleDelete = async id => {
     try {
       await deleteSkill(id);
       setSelectedSkills(null);
@@ -31,57 +45,78 @@ const SkillsAdmin = () => {
     } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  const handleUpdate = async(formData) => {
+  const handleCreate = async formData => {
     try {
-      await updateSkills(formData);
+      const data = await addSkill(formData);
+      if (data.error) {
+        showMessage(data.error, true);
+        return;
+      }
+
+      showMessage(data.message, false);
       setSelectedSkills(null);
       loadSkills();
     } catch (err) {
-      console.log(err)
+      showMessage(`Error during the create ${err}`, true);
     }
-  }
+  };
 
-  const handleCreate = async(formData) => {
-    try {
-      await addSkill(formData);
-      setSelectedSkills(null);
-      loadSkills();
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  if (!status) return <p>loading...</p>;
+
   return (
-    <>
-      <p className="back" onClick={()=> navigate(-1)}>Back</p>
+    <div className="adm">
+      <MdArrowBack className="back" onClick={() => navigate(-1)} />
       <div className={styles.skills_adm}>
-      <h1 className={styles.skills__title}>Skills</h1>
-      <div className={styles.skills__items}>
-        {skills.map(skill => (
-          <div className={styles.skills__item_adm} key={skill.id} onClick={()=> setSelectedSkills(skill)}>
-            <div className={styles.skills__icon_adm} key={skill.id}>
-              <img src={skill.iconUrl} width={90} alt="icon"  />
+        <h1 className={styles.skills__title}>Skills</h1>
+        <div className={styles.skills__items}>
+          {skills.map(skill => (
+            <div
+              className={styles.skills__item_adm}
+              key={skill.id}
+              onClick={() => setSelectedSkills(skill)}
+            >
+              <div className={styles.skills__icon_adm} key={skill.id}>
+                <img
+                  src={skill.iconUrl}
+                  className={styles.skills__img}
+                  alt="icon"
+                />
+              </div>
+              <p>{skill.name}</p>
             </div>
-            <p>{skill.name}</p>
-          </div>  
-        ))}
-        <button className={styles.skills_btn} onClick={()=> setSelectedSkills({})}>+</button>
+          ))}
+          <div className={styles.skills__newSkill}>
+            <button
+              className={styles.skills_btn}
+              onClick={() => setSelectedSkills({})}
+            >
+              +
+            </button>
+            <p>Add new skill</p>
+          </div>
+        </div>
+        {message && (
+          <p
+            className={
+              message.error ? 'error-message' : 'success-message'
+            }
+          >
+            {message?.text}
+          </p>
+        )}
       </div>
-    </div>
-    {
-      selectedSkills && (
-        <SkillModal 
-        onUpdate={handleUpdate} 
-        onClose={()=>setSelectedSkills(null)}  
-        onDelete={handleDelete}
-        onCreate={handleCreate}
-        skill={selectedSkills}
+      {selectedSkills && (
+        <SkillModal
+          onClose={() => setSelectedSkills(null)}
+          onDelete={handleDelete}
+          onCreate={handleCreate}
+          skill={selectedSkills}
         />
-      )
-    }
-    </>
-  )
-}
+      )}
+    </div>
+  );
+};
 
 export default SkillsAdmin;

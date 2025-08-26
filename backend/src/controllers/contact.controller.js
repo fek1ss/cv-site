@@ -13,32 +13,55 @@ export const getContacts = async (req, res) => {
 
 // POST /api/contact
 export const createContact = async (req, res) => {
-  const { label, link, iconUrl } = req.body;
+  const { label, link } = req.body;
+
   try {
+    let iconUrl = null;
+
+    if (req.file) {
+      iconUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
     const [result] = await connection.query(
       "INSERT INTO Contact (label, link, iconUrl) VALUES (?, ?, ?)",
       [label, link, iconUrl]
     );
-    res.json({ message: "Contact created", contactId: result.insertId });
+
+    res.json({ 
+      message: "Contact created", 
+      contactId: result.insertId,
+      iconUrl 
+    });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Create Contact error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
 // PUT /api/contact/:id
 export const updateContact = async (req, res) => {
   const { id } = req.params;
-  const { label, link, iconUrl } = req.body;
+  const { label, link } = req.body;
+
   try {
+    let iconUrl = null;
+
+    if (req.file) {
+      iconUrl = `${req.protocol}://${req.get("host")}/uploads/${req.file.filename}`;
+    }
+
     await connection.query(
-      "UPDATE Contact SET label=?, link=?, iconUrl=? WHERE id=?",
+      "UPDATE Contact SET label=?, link=?, iconUrl=COALESCE(?, iconUrl) WHERE id=?",
       [label, link, iconUrl, id]
     );
-    res.json({ message: "Contact updated" });
+
+    res.json({ message: "Contact updated", iconUrl });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error("Update Contact error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 };
+
 
 // DELETE /api/contact/:id
 export const deleteContact = async (req, res) => {
