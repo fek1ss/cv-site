@@ -62,7 +62,7 @@
 
 /api/users — пользователи (админка, аутентификация)
 
-Frontend:
+# Frontend:
 1. Установить зависимости:
    ```bash
    npm install
