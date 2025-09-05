@@ -18,6 +18,7 @@ const Header = () => {
         <nav>
           <ul className={styles.header__list}>
             <li><a className={styles.header__list_item} href="#about">About me</a></li>
+            <li><a className={styles.header__list_item} href="#education">Education</a></li>
             <li><a className={styles.header__list_item} href="#skills">Skills & Experience</a></li>
             <li><a className={styles.header__list_item} href="#articles">Articles</a></li>
             <li><a className={styles.header__list_item} href="#contacts">Contacts</a></li>

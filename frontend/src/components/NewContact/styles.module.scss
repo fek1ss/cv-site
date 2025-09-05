@@ -22,7 +22,7 @@
     background: none;
     width: 70%;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-color) !important;
   }
 
   button {
@@ -37,6 +37,7 @@
   &__inp_icon {
     border-bottom: none;
     outline: none;
+    color: var(--text-color) !important;
   }
 }
 

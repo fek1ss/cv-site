@@ -34,20 +34,22 @@
     flex-direction: column;
   }
 
+  &__title h3 {
+    font-weight: 600;
+    margin: 0;
+    font-size: 23px;
+  }
+
   &__name {
     padding-left: 1rem;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 20px;
     margin: 0;
     color: var(--footer-background);
   }
 
-  &__title h3 {
-    font-weight: 400;
-    margin: 0;
-  }
-
   &__date {
-    color: var(--secondary-color);
+    color: var(--secondary-color) !important;
     margin: 0;
     margin-left: 1rem;
   }

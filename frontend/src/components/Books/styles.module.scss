@@ -1,0 +1,103 @@
+.books {
+  width: 80%;
+  margin: 5rem auto;
+}
+
+
+.carousel {
+  position: relative;
+  width: 50%;
+  max-width: 600px;
+  margin: 1rem auto;
+  color: black !important;
+
+  :global(.carousel-control-prev),
+  :global(.carousel-control-next) {
+    filter: brightness(0) invert(1);
+    width: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black !important;
+  }
+
+  :global(.carousel-control-prev) {
+    left: -80px;
+  }
+
+  :global(.carousel-control-next) {
+    right: -80px;
+  }
+
+  :global(.carousel-control-prev-icon),
+  :global(.carousel-control-next-icon) {
+    filter: invert(1);
+    width: 50px;
+    height: 50px;
+  }
+
+  :global(.carousel-item) {
+    text-align: center;
+    background: var(--text-color);
+    color: black !important;
+    padding: 40px 20px;
+    min-height: 500px;
+    border-left: 40px solid black;
+  }
+
+  :global(.carousel-caption) {
+    border-radius: 8px;
+    padding: 15px;
+  }
+
+  :global(.carousel-indicators [data-bs-target]) {
+    background-color: #000;
+  }
+
+  :global(.carousel-control-prev-icon),
+  :global(.carousel-control-next-icon) {
+    filter: invert(1);
+  }
+}
+
+.slideContent {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-around;
+  gap: 12px;
+  padding: 1rem;
+  color: black !important;
+
+  h1 {
+    font-size: 3rem;
+    margin: 0;
+    color: black !important;
+    font-family: 'outfit', sans-serif;
+  }
+
+  .authors {
+    margin: 0;
+  }
+
+  p {
+    font-size: 1rem;
+    width: 100%;
+    text-align: start;
+    color: #575757 !important;
+    font-family: "Roboto", sans-serif;
+  }
+
+  &__darkImage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    a {
+      position: absolute;
+      z-index: 2;
+      text-align: center;
+      color: black !important;
+    }
+  }
+}

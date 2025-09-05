@@ -34,6 +34,12 @@
 
   &__label {
     font-size: 25px;
+    text-decoration: none !important;
+    color: var(--text-color) !important;
+  }
+
+  &__label:hover {
+    color: #d9d8d8;
   }
 }
 
@@ -62,6 +68,10 @@
     background-color: var(--footer-background);
   }
 
+  &__inp {
+    color: var(--text-color) !important;
+  }
+
   &__fields {
     display: flex;
     flex-direction: column;
@@ -69,6 +79,10 @@
 
     img {
       width: 20%;
+    }
+
+    label {
+      color: var(--text-color) !important;
     }
   }
 

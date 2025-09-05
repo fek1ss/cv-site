@@ -1,0 +1,22 @@
+.project {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+
+  &__top {
+    display: flex;
+    width: 80%;
+    gap: 3rem;
+  }
+
+  &__btn {
+    color: var(--footer-background);
+    border: none;
+    padding: 3px 1rem;
+    border-radius: 10px;
+    background-color: var(--text-color);
+  }
+}

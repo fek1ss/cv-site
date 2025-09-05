@@ -35,7 +35,7 @@ const Articles = () => {
         <h1 style={{ fontWeight: 400 }}>Articles</h1>
         {articles.slice(0, visibleCount).map(art => (
           <div className={styles.articles__art} key={art.id}>
-            <a href={art.link} target="_blank">
+            <a href={art.articles__link} target="_blank">
               <h1 className={styles.articles__title}>{art.title}</h1>
             </a>
           </div>

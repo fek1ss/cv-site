@@ -10,11 +10,14 @@ import positionRouter from "./routes/position.routes.js";
 import articleRouter from "./routes/article.routes.js";
 import contactRouter from "./routes/contact.routes.js";
 import userRouter from "./routes/user.routes.js";
+import educationRouter from "./routes/education.routes.js";
+import projectRouter from "./routes/project.routes.js";
+import bookRouter from "./routes/book.routes.js";
 
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173"  // фронтенд
+  origin: "http://localhost:5173"  
 }));
 
 app.use(express.json());
@@ -30,6 +33,9 @@ app.use("/api/position", positionRouter);
 app.use("/api/articles", articleRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/users", userRouter);
+app.use("/api/education", educationRouter);
+app.use("/api/projects", projectRouter);
+app.use("/api/books", bookRouter);
 
 const PORT = 5000;
 app.listen(PORT, () => {
