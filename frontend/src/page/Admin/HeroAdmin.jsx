@@ -58,6 +58,7 @@ const HeroAdmin = () => {
             accept="image/*"
             onChange={handleFileChange}
           />
+          {/* damir dev  */}
           <div className={styles.hero__intro_adm}>
             <input
               type="text"
