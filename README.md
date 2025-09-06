@@ -35,14 +35,6 @@
 Поддерживается загрузка файлов (например, фото) через папку `uploads`.
 
 
-## Запуск
-1. Установить зависимости:
-   ```bash
-   npm install
-
-2. Запустить сервер:
-   ```bash
-   node src/index.js
 
 ## Доступные API-роуты
 
@@ -61,3 +53,30 @@
 /api/contact — контакты
 
 /api/users — пользователи (админка, аутентификация)
+
+
+# Запуск
+Склонируй репозиторий и перейди в папку проекта:
+- git clone https://github.com/fek1ss/cv-site
+- cd cv-site
+
+
+## Backend
+- cd backend
+1. Установить зависимости:
+   ```bash
+   npm install
+
+2. Запустить сервер:
+   ```bash
+   node src/index.js
+
+# Frontend:
+- cd frontend
+1. Установить зависимости:
+   ```bash
+   npm install
+
+2. Запустить сервер:
+   ```bash
+   npm run dev
