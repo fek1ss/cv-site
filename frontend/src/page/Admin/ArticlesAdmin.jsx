@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../../components/Articles/styles.module.scss';
+import styles from '../../components/features/Articles/styles.module.scss';
 import {
   deleteArticle,
   getArticles,
@@ -7,7 +7,7 @@ import {
 } from '../../api/articles';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
-import NewArticle from './../../components/NewArticle/NewArticle';
+import NewArticle from '../../components/features/Articles/NewArticle';
 import { me } from '../../api/userApi';
 
 const ArticlesAdmin = () => {
@@ -81,7 +81,7 @@ const ArticlesAdmin = () => {
     }
   };
 
-  if (!status) return <p>loading...</p>
+  if (!status) return <p>loading...</p>;
 
   return (
     <div className="adm">
@@ -91,7 +91,7 @@ const ArticlesAdmin = () => {
         <div className={styles.articles__wrapper}>
           <h1 style={{ fontWeight: 400 }}>Articles</h1>
           {/* Создание новой статьи */}
-          <NewArticle onLoad={()=> loadArts()} />
+          <NewArticle onLoad={() => loadArts()} />
 
           {articles.map((art, idx) => (
             <div

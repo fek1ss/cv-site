@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styles from '../../components/Hero/styles.module.scss';
+import styles from '../../components/features/Hero/styles.module.scss';
 import { getHero, updateHero } from '../../api/heroApi';
 import { useNavigate } from 'react-router-dom';
 import { me } from '../../api/userApi';

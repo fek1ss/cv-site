@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { me } from '../../api/userApi';
 import { useNavigate } from 'react-router-dom';
-import styles from '../../components/Aboutme/styles.module.scss';
+import styles from '../../components/features/Aboutme/styles.module.scss';
 import { getAbout, updateAbout } from '../../api/aboutApi';
 import { MdArrowBack } from 'react-icons/md';
 import { useMessage } from '../../hooks/useMessage';

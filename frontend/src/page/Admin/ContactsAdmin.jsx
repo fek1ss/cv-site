@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import {
-  addContanct,
   deleteContact,
   getContacts,
   updateContact,
 } from '../../api/contactApi';
-import styles from '../../components/Contacts/styles.module.scss';
+import styles from '../../components/layout/Contacts/styles.module.scss';
 import { useNavigate } from 'react-router-dom';
-import s from '../../components/NewContact/styles.module.scss';
+import s from '../../components/layout/Contacts/newcontact.module.scss';
 import { MdArrowBack } from 'react-icons/md';
+import NewContact from '../../components/layout/Contacts/NewContact';
 import { me } from '../../api/userApi';
-import NewContact from './../../components/NewContact/NewContact';
 
 const ContactsAdmin = () => {
   const [status, setStatus] = useState(false);
@@ -76,10 +75,7 @@ const ContactsAdmin = () => {
               className={styles.contacts_adm__itemAdm}
             >
               <div className={styles.contacts_adm__fields}>
-                <img
-                  src={cont.iconUrl}
-                  alt="icon social media"
-                />
+                <img src={cont.iconUrl} alt="icon social media" />
                 <input
                   className={s.conItem__inp_icon}
                   type="file"
@@ -103,16 +99,16 @@ const ContactsAdmin = () => {
                 <label htmlFor="link">
                   Link:
                   <input
-                  className={styles.contacts_adm__inp}
-                  type="text"
-                  id="link"
-                  value={cont.link}
-                  onChange={e => {
-                    const newContacts = [...contacts];
-                    newContacts[idx].link = e.target.value;
-                    setContacts(newContacts);
-                  }}
-                />
+                    className={styles.contacts_adm__inp}
+                    type="text"
+                    id="link"
+                    value={cont.link}
+                    onChange={e => {
+                      const newContacts = [...contacts];
+                      newContacts[idx].link = e.target.value;
+                      setContacts(newContacts);
+                    }}
+                  />
                 </label>
               </div>
               <div className={styles.contacts_adm__actions}>

@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import styles from '../../components/Experience/styles.module.scss';
+import styles from '../../components/features/SkillsExperience/Experience/styles.module.scss';
 import { getExperience } from '../../api/experience';
 import { formatDateRange } from '../../utils/date';
-import NewExperience from './../../components/NewExperience/NewExperience';
-import NewPosition from '../../components/NewExperience/NewPosition';
-import ExperienceModal from '../../components/ExperienceModal/ExperienceModal';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import { me } from '../../api/userApi';
+import NewPosition from '../../components/features/SkillsExperience/Experience/NewPosition';
+import NewExperience from '../../components/features/SkillsExperience/Experience/NewExperience';
+import ExperienceModal from './../../components/features/SkillsExperience/Experience/ExperienceModal';
 
 const ExperienceAdmin = () => {
   const [experiences, setExperiences] = useState([]);

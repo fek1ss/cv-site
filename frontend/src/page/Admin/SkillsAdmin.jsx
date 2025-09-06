@@ -1,17 +1,13 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
-import {
-  addSkill,
-  deleteSkill,
-  getSkills,
-  updateSkills,
-} from '../../api/skillsApi';
-import styles from '../../components/Skills/styles.module.scss';
+import styles from '../../components/features/SkillsExperience/Skills/styles.module.scss';
 import { useNavigate } from 'react-router-dom';
-import SkillModal from '../../components/SkillModal/SkillModal';
 import { MdArrowBack } from 'react-icons/md';
-import { me } from '../../api/userApi';
+import { addSkill, deleteSkill, getSkills } from './../../api/skillsApi';
 import { useMessage } from '../../hooks/useMessage';
+import { me } from '../../api/userApi';
+import SkillModal from './../../components/features/SkillsExperience/Skills/SkillModal';
+
 
 const SkillsAdmin = () => {
   const [skills, setSkills] = useState([]);
