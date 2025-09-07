@@ -1,20 +1,25 @@
 import { useState } from 'react';
 import styles from './newcontact.module.scss';
 import { addContanct } from '../../../api/contactApi';
+import { useMessage } from '../../../hooks/useMessage';
 
 const NewContact = ({ onLoad }) => {
   const [label, setLabel] = useState('');
   const [link, setLink] = useState('');
   const [icon, setIcon] = useState(null);
+  const { message, showMessage } = useMessage();
 
   const handleAddContact = async () => {
     try {
       const data = await addContanct(label, link, icon);
       if (data) {
         onLoad();
+        showMessage(data.message, false);
+        setLabel('');
+        setLink('')
       }
     } catch (err) {
-      console.log(err);
+      showMessage('Error during the update', true);
     }
   };
 
@@ -56,6 +61,15 @@ const NewContact = ({ onLoad }) => {
       >
         Add
       </button>
+      {message && (
+        <p
+          className={
+            message.error ? 'error-message' : 'success-message'
+          }
+        >
+          {message?.text}
+        </p>
+      )}
     </div>
   );
 };

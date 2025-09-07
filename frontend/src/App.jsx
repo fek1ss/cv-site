@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Admin from './page/Admin/Admin';
 import Home from './page/Public/Home';
 import Login from './page/Login/Login';
-import AboutAdmin from './page/Admin/AboutAdmin';
-import ArticlesAdmin from './page/Admin/ArticlesAdmin';
-import ContactsAdmin from './page/Admin/ContactsAdmin';
-import SkillsAdmin from './page/Admin/SkillsAdmin';
-import ExperienceAdmin from './page/Admin/ExperienceAdmin';
 import Hero from './components/features/Hero/Hero';
+import Aboutme from './components/features/Aboutme/Aboutme';
+import Skills from './components/features/SkillsExperience/Skills/Skills';
+import Articles from './components/features/Articles/Articles';
+import Experience from './components/features/SkillsExperience/Experience/Experience';
+import Contacts from './components/layout/Contacts/Contacts';
 
 function App() {
   return (
@@ -16,13 +16,12 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/admin/about' element={<AboutAdmin />} />
+        <Route path='/admin/about' element={<Aboutme isAdmin={true} />} />
         <Route path='/admin/hero' element={<Hero isAdmin={true} />} />
-        <Route path='/admin/skills' element={<SkillsAdmin />} />
-        <Route path='/admin/experience' element={<ExperienceAdmin />} />
-        <Route path='/admin/articles' element={<ArticlesAdmin />} />
-        <Route path='/admin/contacts' element={<ContactsAdmin />} />
-
+        <Route path='/admin/skills' element={<Skills isAdmin={true} />} />
+        <Route path='/admin/experience' element={<Experience isAdmin={true} />} />
+        <Route path='/admin/articles' element={<Articles isAdmin={true} />} />
+        <Route path='/admin/contacts' element={<Contacts isAdmin={true} />} />
       </Routes>
     </BrowserRouter>
   )
