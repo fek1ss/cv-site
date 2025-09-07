@@ -143,7 +143,7 @@ const Skills = ({ isAdmin = false }) => {
                 <div className={styles.skills__icon} key={skill.id}>
                   <img src={skill.iconUrl} width={90} alt="icon" />
                 </div>
-                <p>{skill.name}</p>
+                <p className={styles.skills__name}>{skill.name}</p>
               </div>
             ))}
           </div>

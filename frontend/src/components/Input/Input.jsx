@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styles from './styles.module.scss';
 
 const Input = ({ label, value, onChange, type, color }) => {

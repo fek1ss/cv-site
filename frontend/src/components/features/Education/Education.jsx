@@ -5,6 +5,7 @@ import { getEducations } from './../../../api/educationApi';
 
 const Education = () => {
   const [educations, setEducations] = useState([]);
+  // const [message, setMessage] = 
   const degreeIcons = {
     'Bachelor’s': '/assets/GraduationСapB.png',
     'Master’s': '/assets/GraduationCapM.png',
@@ -14,6 +15,14 @@ const Education = () => {
   useEffect(() => {
     getEducations().then(data => setEducations(data));
   }, []);
+
+  // const handleUpdate = async() => {
+  //   try {
+
+  //   } catch (err) {
+
+  //   }
+  // }
 
   return (
     <motion.section

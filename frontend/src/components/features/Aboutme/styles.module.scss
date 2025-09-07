@@ -20,6 +20,10 @@
     margin: 2rem 0 1rem 0;
   }
 
+  &__text {
+    color: var(--text-color);
+  }
+
   // admin panel
   &__adminAbout {
     margin: 2rem 1rem;

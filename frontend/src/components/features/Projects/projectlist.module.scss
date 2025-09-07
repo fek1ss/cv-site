@@ -37,6 +37,18 @@
     background-color: var(--footer-background);
   }
 
+  &__name {
+    color: var(--text-color);
+  }
+
+  &__desc {
+    color: var(--text-color);
+  }
+
+  &__date {
+    color: rgb(225, 225, 225);
+  }
+
   &__link {
     color: #c5c4c4;
     cursor: pointer;

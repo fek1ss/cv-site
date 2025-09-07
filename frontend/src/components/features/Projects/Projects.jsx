@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import styles from './styles.module.scss';
-import ProjectCarousel from './../ProjectCarousel/ProjectCaroulsel';
-import ProjectList from './../ProjectList/ProjectList';
+import ProjectCarousel from './ProjectCaroulsel';
+import ProjectList from './ProjectList';
 import { motion } from 'framer-motion';
-
 
 const Project = () => {
   const [carousel, setCarousel] = useState(true);

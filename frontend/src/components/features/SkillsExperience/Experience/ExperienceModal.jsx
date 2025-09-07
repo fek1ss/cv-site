@@ -7,6 +7,8 @@ import {
 } from '../../../../api/experience';
 import { updatePosition } from '../../../../api/positionApi';
 import { normalizeDate } from '../../../../utils/normalizeDate';
+import Input from './../../../Input/Input';
+import BaseModal from '../../../BaseModal/BaseModal';
 
 const ExperienceModal = ({ experience, onClose }) => {
   const [name, setName] = useState('');
@@ -97,144 +99,247 @@ const ExperienceModal = ({ experience, onClose }) => {
   };
 
   return (
-    <div className={stylesModal.modalOverlay}>
-      <div className={stylesModal.modal}>
-        <button
-          className={stylesModal.modal__closeBtn}
-          onClick={onClose}
-        >
-          ×
-        </button>
-        <h2 className={stylesModal.modal__title}>Edit Experience</h2>
-        <form action="">
-          <label>
-            Company
-            <input
-              className={stylesModal.modal__inp}
-              type="text"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </label>
-          <label htmlFor="">
-            Logo Compnay
-            <input
-              className={styles.modal__inp}
-              type="file"
-              onChange={e => setIcon(e.target.files[0])}
-            />
-            <img src={experience.logoUrl} alt="logo" width={50} />
-          </label>
+    // <div className={stylesModal.modalOverlay}>
+    //   <div className={stylesModal.modal}>
+    //     <button
+    //       className={stylesModal.modal__closeBtn}
+    //       onClick={onClose}
+    //     >
+    //       ×
+    //     </button>
+    //     <h2 className={stylesModal.modal__title}>Edit Experience</h2>
+    //     <form action="">
+    //       <Input label="Company" type="text" value={name} onChange={setName} color="white" />
+    //       <Input label="Logo Company" type="file" onChange={setIcon} />
 
+    //       <button
+    //         className="save-btn"
+    //         type="button"
+    //         onClick={handleUpdateCompany}
+    //       >
+    //         Update
+    //       </button>
+    //       {message[experience.id] && (
+    //         <p
+    //           className={
+    //             message[experience.id].error
+    //               ? 'error-message'
+    //               : 'success-message'
+    //           }
+    //         >
+    //           {message[experience.id].text}
+    //         </p>
+    //       )}
+    //       {positions.map((pos, idx) => (
+    //         <div key={pos.id} className={styles.positionItem}>
+    //           <div>
+    //             <label>
+    //               Position
+    //               <input
+    //                 type="text"
+    //                 className={stylesModal.modal__inp}
+    //                 value={pos.title}
+    //                 onChange={e => {
+    //                   const newPositions = [...positions];
+    //                   newPositions[idx].title = e.target.value;
+    //                   setPositions(newPositions);
+    //                 }}
+    //               />
+    //             </label>
+    //             <label>
+    //               Start Date
+    //               <input
+    //                 type="date"
+    //                 className={stylesModal.modal__inp}
+    //                 value={
+    //                   pos.startDate ? pos.startDate.split('T')[0] : ''
+    //                 }
+    //                 onChange={e => {
+    //                   const newPositions = [...positions];
+    //                   newPositions[idx].startDate = e.target.value;
+    //                   setPositions(newPositions);
+    //                 }}
+    //               />
+    //             </label>
+    //             <label>
+    //               End Date:
+    //               <input
+    //                 type="date"
+    //                 className={stylesModal.modal__inp}
+    //                 value={
+    //                   pos.endDate ? pos.endDate.split('T')[0] : ''
+    //                 }
+    //                 onChange={e => {
+    //                   const newPositions = [...positions];
+    //                   newPositions[idx].endDate = e.target.value;
+    //                   setPositions(newPositions);
+    //                 }}
+    //               />
+    //               <label>
+    //                 present
+    //                 <input
+    //                   type="checkbox"
+    //                   checked={pos.endDate === ''}
+    //                   onClick={() => {
+    //                     const newPositions = [...positions];
+    //                     newPositions[idx].endDate = '';
+    //                     setPositions(newPositions);
+    //                   }}
+    //                 />
+    //               </label>
+    //             </label>
+    //           </div>
+    //           <button
+    //             type="button"
+    //             className="save-btn"
+    //             onClick={() =>
+    //               handleUpdatePosition(pos, experience.id)
+    //             }
+    //           >
+    //             update
+    //           </button>
+    //           {message[pos.id] && (
+    //             <p
+    //               className={
+    //                 message[pos.id].error
+    //                   ? 'error-message'
+    //                   : 'success-message'
+    //               }
+    //             >
+    //               {message[pos.id].text}
+    //             </p>
+    //           )}
+    //         </div>
+    //       ))}
+    //       <button
+    //         className="delete-btn"
+    //         type="button"
+    //         onClick={() => handleDelete(experience.id)}
+    //       >
+    //         delete
+    //       </button>
+    //     </form>
+    //   </div>
+    // </div>
+
+    <BaseModal
+      title="Edit experience"
+      onClose={onClose}
+      footer={
+        <>
           <button
             className="save-btn"
             type="button"
             onClick={handleUpdateCompany}
           >
-            Update
+            Update Company
           </button>
-          {message[experience.id] && (
-            <p
-              className={
-                message[experience.id].error
-                  ? 'error-message'
-                  : 'success-message'
-              }
-            >
-              {message[experience.id].text}
-            </p>
-          )}
-          {positions.map((pos, idx) => (
-            <div key={pos.id} className={styles.positionItem}>
-              <div>
-                <label>
-                  Position
-                  <input
-                    type="text"
-                    className={stylesModal.modal__inp}
-                    value={pos.title}
-                    onChange={e => {
-                      const newPositions = [...positions];
-                      newPositions[idx].title = e.target.value;
-                      setPositions(newPositions);
-                    }}
-                  />
-                </label>
-                <label>
-                  Start Date
-                  <input
-                    type="date"
-                    className={stylesModal.modal__inp}
-                    value={
-                      pos.startDate ? pos.startDate.split('T')[0] : ''
-                    }
-                    onChange={e => {
-                      const newPositions = [...positions];
-                      newPositions[idx].startDate = e.target.value;
-                      setPositions(newPositions);
-                    }}
-                  />
-                </label>
-                <label>
-                  End Date:
-                  <input
-                    type="date"
-                    className={stylesModal.modal__inp}
-                    value={
-                      pos.endDate ? pos.endDate.split('T')[0] : ''
-                    }
-                    onChange={e => {
-                      const newPositions = [...positions];
-                      newPositions[idx].endDate = e.target.value;
-                      setPositions(newPositions);
-                    }}
-                  />
-                  <label>
-                    present
-                    <input
-                      type="checkbox"
-                      checked={pos.endDate === ''}
-                      onClick={() => {
-                        const newPositions = [...positions];
-                        newPositions[idx].endDate = '';
-                        setPositions(newPositions);
-                      }}
-                    />
-                  </label>
-                </label>
-              </div>
-              <button
-                type="button"
-                className="save-btn"
-                onClick={() =>
-                  handleUpdatePosition(pos, experience.id)
-                }
-              >
-                update
-              </button>
-              {message[pos.id] && (
-                <p
-                  className={
-                    message[pos.id].error
-                      ? 'error-message'
-                      : 'success-message'
-                  }
-                >
-                  {message[pos.id].text}
-                </p>
-              )}
-            </div>
-          ))}
           <button
             className="delete-btn"
             type="button"
             onClick={() => handleDelete(experience.id)}
           >
-            delete
+            Delete
           </button>
-        </form>
-      </div>
-    </div>
+        </>
+      }
+    >
+      <Input
+        label="Company"
+        type="text"
+        value={name}
+        onChange={setName}
+        color="white"
+      />
+      <Input label="Logo Company" type="file" onChange={setIcon} />
+
+      {message[experience.id] && (
+        <p
+          className={
+            message[experience.id].error
+              ? 'error-message'
+              : 'success-message'
+          }
+        >
+          {message[experience.id].text}
+        </p>
+      )}
+
+      {positions.map((pos, idx) => (
+        <div key={pos.id} className="positionItem">
+          <label>
+            Position
+            <input
+              type="text"
+              value={pos.title}
+              onChange={e => {
+                const newPositions = [...positions];
+                newPositions[idx].title = e.target.value;
+                setPositions(newPositions);
+              }}
+            />
+          </label>
+
+          <label>
+            Start Date
+            <input
+              type="date"
+              value={pos.startDate ? pos.startDate.split('T')[0] : ''}
+              onChange={e => {
+                const newPositions = [...positions];
+                newPositions[idx].startDate = e.target.value;
+                setPositions(newPositions);
+              }}
+            />
+          </label>
+
+          <label>
+            End Date
+            <input
+              type="date"
+              value={pos.endDate ? pos.endDate.split('T')[0] : ''}
+              onChange={e => {
+                const newPositions = [...positions];
+                newPositions[idx].endDate = e.target.value;
+                setPositions(newPositions);
+              }}
+            />
+            <label>
+              Present
+              <input
+                type="checkbox"
+                checked={pos.endDate === ''}
+                onClick={() => {
+                  const newPositions = [...positions];
+                  newPositions[idx].endDate = '';
+                  setPositions(newPositions);
+                }}
+              />
+            </label>
+          </label>
+
+          <button
+            type="button"
+            className="save-btn"
+            onClick={() => handleUpdatePosition(pos, experience.id)}
+          >
+            Update Position
+          </button>
+
+          {message[pos.id] && (
+            <p
+              className={
+                message[pos.id].error
+                  ? 'error-message'
+                  : 'success-message'
+              }
+            >
+              {message[pos.id].text}
+            </p>
+          )}
+        </div>
+      ))}
+    </BaseModal>
   );
 };
 

@@ -25,8 +25,8 @@
 
   &__closeBtn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: -10px;
+    right: -10px;
     border: none;
     background: transparent;
     font-size: 30px;
@@ -75,7 +75,7 @@
 
 @media (max-width: 992px) {
   .modal {
-    width: 80%;
+    width: 60%;
 
     &__closeBtn {
       font-size: 40px;

@@ -3,27 +3,23 @@ import styles from './skillmodal.module.scss';
 import { useMessage } from '../../../../hooks/useMessage';
 import { updateSkills } from '../../../../api/skillsApi';
 import Input from './../../../Input/Input';
+import BaseModal from '../../../BaseModal/BaseModal';
 
-const SkillModal = ({
-  skill,
-  onClose,
-  onDelete,
-  onCreate,
-}) => {
+const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
   const isEditing = skill.id;
   const [name, setName] = useState(skill.name || '');
   const [icon, setIcon] = useState(null);
   const { message, showMessage } = useMessage();
 
-  const handleUpdate = async (e) => {
+  const handleUpdate = async e => {
     e.preventDefault();
     try {
-      const data = await updateSkills({id: skill.id, name, icon});
+      const data = await updateSkills({ id: skill.id, name, icon });
       if (data.error) {
         showMessage(data.error, true);
         return;
       }
-      
+
       onClose();
     } catch (err) {
       console.log(err);
@@ -41,63 +37,54 @@ const SkillModal = ({
   };
 
   return (
-    <div className={styles.modalOverlay}>
-      <div className={styles.modal}>
-        <button className={styles.modal__closeBtn} onClick={onClose}>
-          ×
-        </button>
-
-        <h2 className={styles.modal__title}>
-          {isEditing ? 'Edit Skill' : 'Create Skill'}
-        </h2>
-        <form>
-          <Input label="Name" value={name} onChange={setName} type='text' color='#fff' />
-          <Input label="Icon" onChange={setIcon} type='file' />
-
-          {/* <label>
-            Icon:
-            <input
-              type="file"
-              onChange={e => setIcon(e.target.files[0])}
-            />
-          </label> */}
-          <p className="hint">The icon should be square.</p>
-          <div className={styles.modalActions}>
-            {isEditing ? (
-              <>
-                <button
-                  onClick={handleDelete}
-                  type="button"
-                  className={styles.deleteBtn}
-                >
-                  Delete
-                </button>
-                <button onClick={handleUpdate} className="save-btn">
-                  Save
-                </button>
-              </>
-            ) : (
-              <button
-                onClick={handleCreate}
-                type="button"
-                className="save-btn"
-              >
-                Create
-              </button>
-            )}
-          </div>
-          {message && (
-            <p
-              className={
-                message.error ? 'error-message' : 'success-message'
-              }
+    <BaseModal
+      title={isEditing ? 'Edit Skill' : 'Create Skill'}
+      onClose={onClose}
+      onSubmit={isEditing ? handleUpdate : undefined}
+      footer={
+        isEditing ? (
+          <>
+            <button
+              type="button"
+              onClick={() => onDelete(skill.id)}
+              className={styles.deleteBtn}
             >
-              {message?.text}
-            </p>
-          )}
-        </form>
-      </div>
-    </div>
+              Delete
+            </button>
+            <button type="submit" className="save-btn">
+              Save
+            </button>
+          </>
+        ) : (
+          <button
+            type="button"
+            onClick={() => onCreate({ name, icon })}
+            className="save-btn"
+          >
+            Create
+          </button>
+        )
+      }
+    >
+      <Input
+        label="Name"
+        value={name}
+        onChange={setName}
+        type="text"
+        color="#fff"
+      />
+      <Input label="Icon" onChange={setIcon} type="file" />
+      <p className="hint">The icon should be square.</p>
+      {message && (
+        <p
+          className={
+            message.error ? 'error-message' : 'success-message'
+          }
+        >
+          {message.text}
+        </p>
+      )}
+    </BaseModal>
   );
 };
 

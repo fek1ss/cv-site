@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import styles from './styles.module.scss';
-import { getProject } from '../../api/projectApi';
-import { normalizeDate } from './../../utils/normalizeDate';
+import styles from './projectlist.module.scss';
+import { getProject } from '../../../api/projectApi';
+import { normalizeDate } from '../../../utils/normalizeDate';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
@@ -69,9 +69,11 @@ const ProjectList = () => {
         {currentProjects.length > 0 ? (
           currentProjects.map(prj => (
             <div className={styles.project__item} key={prj.id}>
-              <h1>{prj.name}</h1>
-              <p>{prj.description}</p>
-              <p>
+              <h1 className={styles.project__name}>{prj.name}</h1>
+              <p className={styles.project__desc}>
+                {prj.description}
+              </p>
+              <p className={styles.project__date}>
                 Date: {normalizeDate(prj.dateStart)} -{' '}
                 {normalizeDate(prj.dateEnd)}
               </p>
