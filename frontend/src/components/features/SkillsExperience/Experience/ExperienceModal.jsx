@@ -50,7 +50,6 @@ const ExperienceModal = ({ experience, onClose }) => {
         }, 1500);
       }
     } catch (err) {
-      console.log(err);
       setMessage(prev => ({
         ...prev,
         [pos.id]: { text: 'Error updating', error: true },

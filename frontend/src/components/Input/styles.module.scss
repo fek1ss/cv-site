@@ -1,0 +1,60 @@
+.label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0.5rem 0;
+  padding: 0;
+
+  &__name {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__span {
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    font-size: 14px;
+    vertical-align: middle;
+    color: rgb(255 255 255);
+    text-align: center;
+    border-radius: 4px;
+    background-color: #419152;
+    line-height: 22px;
+    height: 40px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border: none;
+    margin: 0;
+    transition: background-color 0.2s;
+  }
+}
+
+.inputText {
+  margin-left: 1rem;
+  font-size: 18px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+
+.inputFile {
+  font-size: 16px;
+
+  &::file-selector-button {
+    background: #419152;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      background: #367a45;
+    }
+  }
+}

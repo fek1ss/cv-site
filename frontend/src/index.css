@@ -38,7 +38,7 @@ html, body {
   text-decoration: none;
 }
 
-h1,h4,p {
+h1,h4 {
   color: var(--text-color) !important;
 }
 

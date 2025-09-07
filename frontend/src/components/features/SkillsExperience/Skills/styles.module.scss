@@ -63,10 +63,11 @@
     flex-direction: column;
     align-content: center;
     justify-content: center;
+  }
 
-    p {
-      text-align: center;
-    }
+  &__name {
+    text-align: center;
+    color: var(--text-color);
   }
 }
 

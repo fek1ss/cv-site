@@ -39,10 +39,19 @@ const Contacts = ({ isAdmin = false }) => {
       const data = await updateContact(label, link, icon, id);
       if (data.message === 'Contact updated') {
         loadCont();
-        showMessage(data.message, false);
+        setMessage(prev => ({
+          ...prev,
+          [id]: { text: 'Updated success', error: false },
+        }));
+        setTimeout(() => {
+          setMessage(prev => ({ ...prev, [id]: null }));
+        }, 1500);
       }
     } catch (err) {
-      showMessage('Error during the update', true);
+      setMessage(prev => ({
+        ...prev,
+        [id]: { text: 'Error updating', error: true },
+      }));
     }
   };
 
@@ -51,10 +60,19 @@ const Contacts = ({ isAdmin = false }) => {
       const data = await deleteContact(id);
       if (data.status === 200) {
         loadCont();
-        showMessage(data.message, false);
+        setMessage(prev => ({
+          ...prev,
+          [id]: { text: 'Updated success', error: false },
+        }));
+        setTimeout(() => {
+          setMessage(prev => ({ ...prev, [data.id]: null }));
+        }, 1500);
       }
     } catch (err) {
-      showMessage('Error during the update', true);
+      setMessage(prev => ({
+        ...prev,
+        [id]: { text: 'Error updating', error: true },
+      }));
     }
   };
 
@@ -118,15 +136,15 @@ const Contacts = ({ isAdmin = false }) => {
                         }}
                       />
                     </label>
-                    {message && (
+                    {message[cont.id] && (
                       <p
                         className={
-                          message.error
+                          message[cont.id].error
                             ? 'error-message'
                             : 'success-message'
                         }
                       >
-                        {message?.text}
+                        {message[cont.id].text}
                       </p>
                     )}
                   </div>

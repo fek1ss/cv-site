@@ -96,7 +96,7 @@ const Skills = ({ isAdmin = false }) => {
                       alt="icon"
                     />
                   </div>
-                  <p>{skill.name}</p>
+                  <p className={styles.skills__name}>{skill.name}</p>
                 </div>
               ))}
               <div className={styles.skills__newSkill}>
@@ -106,7 +106,7 @@ const Skills = ({ isAdmin = false }) => {
                 >
                   +
                 </button>
-                <p>Add new skill</p>
+                <p className={styles.skills__name}>Add new skill</p>
               </div>
             </div>
             {message && (

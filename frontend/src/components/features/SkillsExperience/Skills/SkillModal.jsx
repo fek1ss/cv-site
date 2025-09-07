@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styles from './skillmodal.module.scss';
 import { useMessage } from '../../../../hooks/useMessage';
 import { updateSkills } from '../../../../api/skillsApi';
+import Input from './../../../Input/Input';
 
 const SkillModal = ({
   skill,
   onClose,
-  onUpdate,
   onDelete,
   onCreate,
 }) => {
@@ -51,23 +51,16 @@ const SkillModal = ({
           {isEditing ? 'Edit Skill' : 'Create Skill'}
         </h2>
         <form>
-          <label>
-            Name:
-            <input
-              className={styles.modal__inp}
-              type="text"
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </label>
+          <Input label="Name" value={name} onChange={setName} type='text' color='#fff' />
+          <Input label="Icon" onChange={setIcon} type='file' />
 
-          <label>
+          {/* <label>
             Icon:
             <input
               type="file"
               onChange={e => setIcon(e.target.files[0])}
             />
-          </label>
+          </label> */}
           <p className="hint">The icon should be square.</p>
           <div className={styles.modalActions}>
             {isEditing ? (

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './newexp.module.scss';
 import { addCompany, updateCompany } from '../../../../api/experience';
+import Input from './../../../Input/Input';
 
 const NewExperience = ({onCompanyId}) => {
   const [name, setName] = useState('');
@@ -40,14 +41,8 @@ const NewExperience = ({onCompanyId}) => {
           <>
         <h1>Where did/do you work?</h1>
       <form className={styles.newExp__container}>
-        <label>
-          Name compnay:
-          <input type="text" className={styles.newExp__name} onChange={e => setName(e.target.value)} />
-        </label>
-        <label htmlFor="">
-          Logo company: (not necessary)
-          <input type="file" onChange={e => setIcon(e.target.files[0])} />
-        </label>
+        <Input label="Name company" type="text" value={name} onChange={setName} color='#04152D' />
+        <Input label="Logo company: (not necessary)" onChange={setIcon} type='file' color='#04152D'  />
         {
           isCompanyId == null ? (
             <button onClick={handleCreate}>continue</button>
