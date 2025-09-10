@@ -6,12 +6,13 @@
   font-weight: 500;
   margin: 0.5rem 0;
   padding: 0;
-  width: 80%;
+  width: 100%;
 
   &__name {
     margin: 0;
     padding: 0;
     font-size: 1rem;
+    width: auto;
   }
 
   &__span {
@@ -40,12 +41,10 @@
   background: none;
   border: none;
   outline: none;
-  width: 100%;
 }
 
 .inputFile {
-  font-size: 16px;
-  width: 100%;
+  font-size: 1rem;
   flex-wrap: wrap;
 
   &::file-selector-button {
@@ -63,13 +62,26 @@
   }
 }
 
-@media (max-width: 565px) {
+
+@media (max-width: 414px) {
+  .label {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+
+
+@media (max-width: 667px) {
+
   .inputFile {
     background-color: #419152;
     padding: 8px 16px;
     border-radius: 4px;
+    width: 40%  ;
     &::file-selector-button {
       display: none;
     }
   }
 }
+

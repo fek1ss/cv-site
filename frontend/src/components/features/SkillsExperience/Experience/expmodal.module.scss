@@ -8,6 +8,12 @@
   padding: 0.3rem 1rem;
   margin: 1rem auto;
   border-radius: 10px;
+
+
+  button {
+    width: auto;
+    margin: 0.7rem 0;
+  }
 }
 
 .modal__inp {
@@ -15,4 +21,35 @@
   width: 50%;
 }
 
+.positionLabel {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  gap: 1rem;
+}
+
+.positionInp {
+  background: none;
+  border: none;
+  border-bottom: 1px solid black;
+  outline: none;
+  width: 80%;
+  color: var(--footer-background);
+  font-weight: bold;
+}
+
+.present {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 414px) {
+  .present {
+    justify-content: end;
+    width: 100%;
+  }
+}
 

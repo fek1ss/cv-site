@@ -56,6 +56,9 @@ const ExperienceModal = ({ experience, onClose }) => {
         ...prev,
         [pos.id]: { text: 'Error updating', error: true },
       }));
+      setTimeout(() => {
+        setMessage(prev => ({ ...prev, [pos.id]: null }));
+      }, 1500);
     }
   };
 
@@ -87,7 +90,6 @@ const ExperienceModal = ({ experience, onClose }) => {
         }, 1500);
       }
     } catch (err) {
-      console.log(err);
       setMessage(prev => ({
         ...prev,
         [experience.id]: {
@@ -95,133 +97,13 @@ const ExperienceModal = ({ experience, onClose }) => {
           error: true,
         },
       }));
+      setTimeout(() => {
+        setMessage(prev => ({ ...prev, [experience.id]: null }));
+      }, 1500);
     }
   };
 
   return (
-    // <div className={stylesModal.modalOverlay}>
-    //   <div className={stylesModal.modal}>
-    //     <button
-    //       className={stylesModal.modal__closeBtn}
-    //       onClick={onClose}
-    //     >
-    //       ×
-    //     </button>
-    //     <h2 className={stylesModal.modal__title}>Edit Experience</h2>
-    //     <form action="">
-    //       <Input label="Company" type="text" value={name} onChange={setName} color="white" />
-    //       <Input label="Logo Company" type="file" onChange={setIcon} />
-
-    //       <button
-    //         className="save-btn"
-    //         type="button"
-    //         onClick={handleUpdateCompany}
-    //       >
-    //         Update
-    //       </button>
-    //       {message[experience.id] && (
-    //         <p
-    //           className={
-    //             message[experience.id].error
-    //               ? 'error-message'
-    //               : 'success-message'
-    //           }
-    //         >
-    //           {message[experience.id].text}
-    //         </p>
-    //       )}
-    //       {positions.map((pos, idx) => (
-    //         <div key={pos.id} className={styles.positionItem}>
-    //           <div>
-    //             <label>
-    //               Position
-    //               <input
-    //                 type="text"
-    //                 className={stylesModal.modal__inp}
-    //                 value={pos.title}
-    //                 onChange={e => {
-    //                   const newPositions = [...positions];
-    //                   newPositions[idx].title = e.target.value;
-    //                   setPositions(newPositions);
-    //                 }}
-    //               />
-    //             </label>
-    //             <label>
-    //               Start Date
-    //               <input
-    //                 type="date"
-    //                 className={stylesModal.modal__inp}
-    //                 value={
-    //                   pos.startDate ? pos.startDate.split('T')[0] : ''
-    //                 }
-    //                 onChange={e => {
-    //                   const newPositions = [...positions];
-    //                   newPositions[idx].startDate = e.target.value;
-    //                   setPositions(newPositions);
-    //                 }}
-    //               />
-    //             </label>
-    //             <label>
-    //               End Date:
-    //               <input
-    //                 type="date"
-    //                 className={stylesModal.modal__inp}
-    //                 value={
-    //                   pos.endDate ? pos.endDate.split('T')[0] : ''
-    //                 }
-    //                 onChange={e => {
-    //                   const newPositions = [...positions];
-    //                   newPositions[idx].endDate = e.target.value;
-    //                   setPositions(newPositions);
-    //                 }}
-    //               />
-    //               <label>
-    //                 present
-    //                 <input
-    //                   type="checkbox"
-    //                   checked={pos.endDate === ''}
-    //                   onClick={() => {
-    //                     const newPositions = [...positions];
-    //                     newPositions[idx].endDate = '';
-    //                     setPositions(newPositions);
-    //                   }}
-    //                 />
-    //               </label>
-    //             </label>
-    //           </div>
-    //           <button
-    //             type="button"
-    //             className="save-btn"
-    //             onClick={() =>
-    //               handleUpdatePosition(pos, experience.id)
-    //             }
-    //           >
-    //             update
-    //           </button>
-    //           {message[pos.id] && (
-    //             <p
-    //               className={
-    //                 message[pos.id].error
-    //                   ? 'error-message'
-    //                   : 'success-message'
-    //               }
-    //             >
-    //               {message[pos.id].text}
-    //             </p>
-    //           )}
-    //         </div>
-    //       ))}
-    //       <button
-    //         className="delete-btn"
-    //         type="button"
-    //         onClick={() => handleDelete(experience.id)}
-    //       >
-    //         delete
-    //       </button>
-    //     </form>
-    //   </div>
-    // </div>
-
     <BaseModal
       title="Edit experience"
       onClose={onClose}
@@ -232,7 +114,7 @@ const ExperienceModal = ({ experience, onClose }) => {
             type="button"
             onClick={handleUpdateCompany}
           >
-            Update Company
+            Update
           </button>
           <button
             className="delete-btn"
@@ -266,10 +148,11 @@ const ExperienceModal = ({ experience, onClose }) => {
       )}
 
       {positions.map((pos, idx) => (
-        <div key={pos.id} className="positionItem">
-          <label>
+        <div key={pos.id} className={styles.positionItem}>
+          <label className={styles.positionLabel}>
             Position
             <input
+              className={styles.positionInp}
               type="text"
               value={pos.title}
               onChange={e => {
@@ -280,7 +163,7 @@ const ExperienceModal = ({ experience, onClose }) => {
             />
           </label>
 
-          <label>
+          <label className={styles.positionLabel}>
             Start Date
             <input
               type="date"
@@ -293,7 +176,7 @@ const ExperienceModal = ({ experience, onClose }) => {
             />
           </label>
 
-          <label>
+          <label className={styles.positionLabel}>
             End Date
             <input
               type="date"
@@ -304,18 +187,18 @@ const ExperienceModal = ({ experience, onClose }) => {
                 setPositions(newPositions);
               }}
             />
-            <label>
-              Present
-              <input
-                type="checkbox"
-                checked={pos.endDate === ''}
-                onClick={() => {
-                  const newPositions = [...positions];
-                  newPositions[idx].endDate = '';
-                  setPositions(newPositions);
-                }}
-              />
-            </label>
+          </label>
+          <label className={styles.present}>
+            Present
+            <input
+              type="checkbox"
+              checked={pos.endDate === ''}
+              onClick={() => {
+                const newPositions = [...positions];
+                newPositions[idx].endDate = '';
+                setPositions(newPositions);
+              }}
+            />
           </label>
 
           <button

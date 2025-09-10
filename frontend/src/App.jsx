@@ -8,6 +8,7 @@ import Skills from './components/features/SkillsExperience/Skills/Skills';
 import Articles from './components/features/Articles/Articles';
 import Experience from './components/features/SkillsExperience/Experience/Experience';
 import Contacts from './components/layout/Contacts/Contacts';
+import Education from './components/features/Education/Education';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path='/admin' element={<Admin />} />
         <Route path='/login' element={<Login />} />
         <Route path='/admin/about' element={<Aboutme isAdmin={true} />} />
+        <Route path='/admin/education' element={<Education isAdmin={true} />} />
         <Route path='/admin/hero' element={<Hero isAdmin={true} />} />
         <Route path='/admin/skills' element={<Skills isAdmin={true} />} />
         <Route path='/admin/experience' element={<Experience isAdmin={true} />} />

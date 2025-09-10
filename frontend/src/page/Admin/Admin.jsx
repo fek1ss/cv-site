@@ -24,6 +24,7 @@ const Admin = () => {
       <nav className={styles.admin__nav}>
         <Link to="/admin/hero"> Hero </Link>
         <Link to="/admin/about"> About me </Link>
+        <Link to="/admin/education"> Education </Link>
         <Link to="/admin/skills"> Skills </Link>
         <Link to="/admin/experience"> Experience </Link>
         <Link to="/admin/articles"> Article </Link>

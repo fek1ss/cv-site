@@ -14,21 +14,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --background-color: #04152D;
+  --background-color: #04152d;
   --text-color: #ffff;
   --secondary-color: #404040;
-  --link-color: #C5C4C4;
-  --footer-background: #19376D;
+  --link-color: #c5c4c4;
+  --footer-background: #19376d;
   position: relative;
   background-repeat: no-repeat;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   background-color: var(--background-color) !important;
 }
-
 
 * {
   padding: 0;
@@ -38,7 +38,8 @@ html, body {
   text-decoration: none;
 }
 
-h1,h4 {
+h1,
+h4 {
   color: var(--text-color) !important;
 }
 
@@ -46,12 +47,11 @@ a {
   text-decoration: none !important;
 }
 
-
 .decor {
-  inset: 0;            
-  pointer-events: none; 
-  overflow: hidden;   
-  z-index: -1;  
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
 }
 
 .decor::before,
@@ -60,11 +60,15 @@ a {
   width: 500px;
   height: 500px;
   position: absolute;
-  background: radial-gradient(circle, rgba(79, 97, 130, 0.6) 0%, rgba(4, 21, 45, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(79, 97, 130, 0.6) 0%,
+    rgba(4, 21, 45, 0) 70%
+  );
 }
 
 @media (max-width: 667px) {
-  .decor{
+  .decor {
     display: none;
   }
 }
@@ -90,7 +94,6 @@ a {
   text-align: center;
 }
 
-
 .save-btn {
   cursor: pointer;
   padding: 0.5rem;
@@ -114,7 +117,7 @@ a {
 .textarea {
   display: block;
   width: 100%;
-  height: 300px; 
+  height: 300px;
   padding: 1rem;
   background-color: var(--background-color);
 }
@@ -124,7 +127,7 @@ a {
 }
 
 .back {
-  margin: 2rem 3rem;  
+  margin: 2rem 3rem;
   color: white;
   font-size: 2rem;
   font-weight: 200;
@@ -140,20 +143,54 @@ a {
   font-size: 15px;
 }
 
-input[type="date"] {
-    background-color: rgb(42, 104, 228);
-    padding: 2px 5px;
-    color: var(--text-color);
-    font-family: "Roboto Mono", monospace;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor:pointer;
-  }
+input[type="checkbox"] {
+  appearance: none; /* убираем стандартный стиль */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  width: 18px;
+  height: 18px;
+  border: 2px solid #666;
+  border-radius: 4px; /* можно 50% для круга */
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
 
-  ::-webkit-calendar-picker-indecator {
-    background-color: var(--text-color);
-    cursor: pointer;
-    border-radius: 3px;
-  }
+/* при активном состоянии */
+input[type="checkbox"]:checked {
+  background-color: #4cafef;
+  border-color: #4cafef;
+}
+
+/* галочка через псевдоэлемент */
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+input[type='date'] {
+  background-color: rgb(42, 104, 228);
+  padding: 2px 5px;
+  color: var(--text-color);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: auto;
+}
+
+::-webkit-calendar-picker-indecator {
+  background-color: var(--text-color);
+  cursor: pointer;
+  border-radius: 3px;
+}

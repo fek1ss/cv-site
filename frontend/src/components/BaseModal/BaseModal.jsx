@@ -15,10 +15,9 @@ const BaseModal = ({
         <div className={styles.modal__top}>
           {title && <h2 className={styles.modal__title}>{title}</h2>}
           <IoClose onClick={onClose} className={styles.modal__closeBtn} />
-
         </div>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className={styles.modal__form}>
           {children}
 
           <div className={styles.modalActions}>{footer}</div>

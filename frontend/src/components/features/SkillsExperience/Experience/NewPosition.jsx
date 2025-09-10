@@ -33,6 +33,7 @@ const NewPosition = ({ companyId, onSuccess }) => {
         setStartDate('');
         setEndDate('');
         showMessage('created', false);
+        onSuccess()
       }
     } catch (e) {
       showMessage('something wrong...');
@@ -41,10 +42,10 @@ const NewPosition = ({ companyId, onSuccess }) => {
 
   return (
     <div className={styles.newExp}>
-      <h1>Specify the position in this company</h1>
+      <h1 className={styles.newExp__title}>Specify the position in this company</h1>
       <form className={styles.newExp__container}>
-        <label>
-          Position
+        <label className={styles.newExp__label}>
+          <p className={styles.newExp__labelName}>Position:</p>
           <input
             type="text"
             className={styles.newExp__name}
@@ -52,8 +53,8 @@ const NewPosition = ({ companyId, onSuccess }) => {
             onChange={e => setTitle(e.target.value)}
           />
         </label>
-        <label>
-          Start Date
+        <label className={styles.newExp__label}>
+          <p className={styles.newExp__labelName}>Start Date:</p>
           <input
             type="date"
             className={styles.newExp__name}
@@ -61,16 +62,20 @@ const NewPosition = ({ companyId, onSuccess }) => {
             onChange={e => setStartDate(e.target.value)}
           />
         </label>
-        <label>
-          End Date
-          <input
-            type="date"
-            className={styles.newExp__name}
-            value={endDate ? endDate : ''}
-            onChange={e => setEndDate(e.target.value)}
-          />
-          <label>
-            <p>present</p>
+        <label
+          className={`${styles.newExp__label} ${styles.newExp__end}`}
+        >
+          <label className={styles.newExp__label}>
+            <p className={styles.newExp__labelName}>End Date:</p>
+            <input
+              type="date"
+              className={styles.newExp__date}
+              value={endDate ? endDate : ''}
+              onChange={e => setEndDate(e.target.value)}
+            />
+          </label>
+          <label className={styles.newExp__label}>
+            <p className={styles.newExp__labelName}>present</p>
             <input
               type="checkbox"
               checked={endDate === null}
@@ -83,12 +88,12 @@ const NewPosition = ({ companyId, onSuccess }) => {
 
         <div className={styles.newExp__buttons}>
           <button onClick={handleCreate}>Submit</button>
-          {message?.text === '' &&
+          {/* {message?.text === '' &&
             !message?.error &&
             title === '' &&
             startDate === '' && (
               <button onClick={onSuccess}>Save</button>
-            )}
+            )} */}
         </div>
       </form>
       {
