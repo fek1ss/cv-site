@@ -41,11 +41,15 @@
   background: none;
   border: none;
   outline: none;
+  width: 60%;
+  max-width: 100%;  /* чтобы не вылазил */
+  box-sizing: border-box;
 }
 
 .inputFile {
   font-size: 1rem;
   flex-wrap: wrap;
+  width: auto;
 
   &::file-selector-button {
     background: #419152;
@@ -60,6 +64,16 @@
       background: #367a45;
     }
   }
+}
+
+.inputNumber {
+  font-size: 18px;
+  background: none;
+  border: none;
+  outline: none;
+  width: 15%;
+  max-width: 100%;  
+  box-sizing: border-box;
 }
 
 

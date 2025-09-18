@@ -88,12 +88,6 @@ const NewPosition = ({ companyId, onSuccess }) => {
 
         <div className={styles.newExp__buttons}>
           <button onClick={handleCreate}>Submit</button>
-          {/* {message?.text === '' &&
-            !message?.error &&
-            title === '' &&
-            startDate === '' && (
-              <button onClick={onSuccess}>Save</button>
-            )} */}
         </div>
       </form>
       {

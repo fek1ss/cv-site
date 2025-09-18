@@ -16,6 +16,11 @@ const NewExperience = ({ onCompanyId }) => {
 
   const handleCreate = async e => {
     e.preventDefault();
+
+    if(name === '' && icon === null) {
+      showMessage('fill in all field', true)
+      return
+    }
     try {
       const data = await addCompany({ name, icon });
       onCompanyId(data.companyId);

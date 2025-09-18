@@ -181,12 +181,11 @@ const Experience = ({ isAdmin = false }) => {
                         width={70}
                       />
                       <div className={styles.exps__title}>
-                        <h3>{exp.name}</h3>
-                        <h3>{exp.positions[0].title} </h3>
+                        <h3 className={styles.exps__nameCopmany}>{exp.name}</h3>
+                        <h3 className={styles.exps__namePosition}>{exp.positions[0].title} </h3>
                       </div>
                     </div>
                     <p className={styles.exps__date}>
-                      Date:{' '}
                       {formatDateRange(
                         exp.positions[0].startDate,
                         exp.positions[0].endDate,
@@ -216,7 +215,6 @@ const Experience = ({ isAdmin = false }) => {
                           {pos.title}
                         </h3>
                         <p className={styles.exps__date}>
-                          Date:{' '}
                           {formatDateRange(
                             pos.startDate,
                             pos.endDate,

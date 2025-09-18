@@ -9,14 +9,14 @@ import { me } from '../../../api/userApi';
 import { useNavigate } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import NewContact from './NewContact';
-import { useMessage } from '../../../hooks/useMessage';
+import { useMessageId } from '../../../hooks/useMessageId';
 
 const Contacts = ({ isAdmin = false }) => {
   const [status, setStatus] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [icon, setIcon] = useState(null);
   const navigate = useNavigate();
-  const [message, setMessage] = useState({});
+  const { message, showMessage } = useMessageId();
 
   useEffect(() => {
     if (isAdmin) {
@@ -39,19 +39,10 @@ const Contacts = ({ isAdmin = false }) => {
       const data = await updateContact(label, link, icon, id);
       if (data.message === 'Contact updated') {
         loadCont();
-        setMessage(prev => ({
-          ...prev,
-          [id]: { text: 'Updated success', error: false },
-        }));
-        setTimeout(() => {
-          setMessage(prev => ({ ...prev, [id]: null }));
-        }, 1500);
+        showMessage(data.message || 'Updated success', false, id)
       }
     } catch (err) {
-      setMessage(prev => ({
-        ...prev,
-        [id]: { text: 'Error updating', error: true },
-      }));
+      showMessage(`Error updating: ${err}`, true, id)
     }
   };
 
@@ -60,19 +51,10 @@ const Contacts = ({ isAdmin = false }) => {
       const data = await deleteContact(id);
       if (data.status === 200) {
         loadCont();
-        setMessage(prev => ({
-          ...prev,
-          [id]: { text: 'Updated success', error: false },
-        }));
-        setTimeout(() => {
-          setMessage(prev => ({ ...prev, [data.id]: null }));
-        }, 1500);
+        showMessage('Updated success', false, id)
       }
     } catch (err) {
-      setMessage(prev => ({
-        ...prev,
-        [id]: { text: 'Error updating', error: true },
-      }));
+      showMessage('Error delete', true, id)
     }
   };
 

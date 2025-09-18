@@ -5,15 +5,11 @@ export const getBooks = async() => {
   return res.json();
 }
 
-export const createBook = async({title, description, link}) => {
-  const formData = FormData();
-  formData.append('title', title);
-  formData.append('description', description);
-  formData.append('link', link);
-
+export const createBook = async(title, description, link, author) => {
   const res = await fetch(`${API_URL}/api/books`, {
     method: 'POST',
-    body: formData
+    headers: {'Content-type':'application/json'},
+    body: JSON.stringify({title, description, link, author})
   })
 
   if (!res.ok) throw new Error('Something wrong....');
@@ -22,15 +18,11 @@ export const createBook = async({title, description, link}) => {
   return data;
 }
 
-export const updateBook = async({id, title, description, link }) => {
-  const formData = FormData();
-  formData.append('title', title);
-  formData.append('description', description);
-  formData.append('link', link);
-
-  const res = await fetch(`${API_URL}/api/books`, {
-    method: 'PUT',
-    body: formData
+export const updateBook = async(id, title, description, link, author) => {
+  const res = await fetch(`${API_URL}/api/books/${id}`, {
+    method: 'PATCH',
+    headers: {'Content-type':'application/json'},
+    body: JSON.stringify({ title, description, link, author })
   })
 
   if (!res.ok) throw new Error('Something wrong....');

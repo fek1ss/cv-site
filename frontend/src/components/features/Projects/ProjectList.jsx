@@ -1,19 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './projectlist.module.scss';
-import { getProject } from '../../../api/projectApi';
 import { normalizeDate } from '../../../utils/normalizeDate';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 import { FaSearch } from 'react-icons/fa';
+import ProjectCard from './ProjectCard';
 
-const ProjectList = () => {
-  const [projects, setProjects] = useState([]);
+const ProjectList = ({ onSuccess, projects, isAdmin }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
-
-  useEffect(() => {
-    getProject().then(data => setProjects(data));
-  }, []);
 
   // фильтрация по запросу
   const filteredProjects = projects.filter(
@@ -66,22 +61,46 @@ const ProjectList = () => {
       </div>
 
       <div className={styles.project__list}>
-        {currentProjects.length > 0 ? (
-          currentProjects.map(prj => (
-            <div className={styles.project__item} key={prj.id}>
-              <h1 className={styles.project__name}>{prj.name}</h1>
-              <p className={styles.project__desc}>
-                {prj.description}
-              </p>
-              <p className={styles.project__date}>
-                Date: {normalizeDate(prj.dateStart)} -{' '}
-                {normalizeDate(prj.dateEnd)}
-              </p>
-              <a className={styles.project__link}>{prj.link}</a>
-            </div>
-          ))
+        {isAdmin ? (
+          <div>
+            {currentProjects.length > 0 ? (
+              currentProjects.map(prj => (
+                <ProjectCard
+                  key={prj.id}
+                  prj={prj}
+                  name={prj.name}
+                  description={prj.description}
+                  dateStart={prj.dateStart}
+                  dateEnd={prj.dateEnd}
+                  link={prj.link}
+                  img={prj.imageUrl}
+                  onSuccess={()=> onSuccess()}
+                />
+              ))
+            ) : (
+              <p>Not found...</p>
+            )}
+          </div>
         ) : (
-          <p>Not found...</p>
+          <div>
+            {currentProjects.length > 0 ? (
+              currentProjects.map(prj => (
+                <div className={styles.project__item} key={prj.id}>
+                  <h1 className={styles.project__name}>{prj.name}</h1>
+                  <p className={styles.project__desc}>
+                    {prj.description}
+                  </p>
+                  <p className={styles.project__date}>
+                    Date: {normalizeDate(prj.dateStart)} -{' '}
+                    {normalizeDate(prj.dateEnd)}
+                  </p>
+                  <a className={styles.project__link}>{prj.link}</a>
+                </div>
+              ))
+            ) : (
+              <p>Not found...</p>
+            )}
+          </div>
         )}
       </div>
       <div className={styles.project__pagination}>

@@ -28,7 +28,7 @@ export const addArticle = async(title, link) => {
   if(!res.ok) throw new Error("Error during the update");
     
   const data = await res.json();
-  return data
+  return data;
 }
 
 export const deleteArticle = async(id) => {

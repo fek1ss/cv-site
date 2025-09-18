@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { addArticle } from '../../../api/articles';
-import styles from './newarticle.module.scss';
+import styles from '../../../styles/newFeature.module.scss';
 import { useMessage } from '../../../hooks/useMessage';
+import Input from './../../Input/Input';
 
 const NewArticle = ({ onLoad }) => {
   const { message, showMessage } = useMessage();
@@ -18,6 +19,8 @@ const NewArticle = ({ onLoad }) => {
       if (data.articleId) {
         onLoad(prev => !prev);
         showMessage(data.message, false);
+        setTitle('');
+        setLink('');
       }
     } catch (err) {
       console.log(err);
@@ -26,36 +29,40 @@ const NewArticle = ({ onLoad }) => {
   };
 
   return (
-    <div className={styles.newArt}>
-      <label>
-        Title:
-        <input
+    <div className={styles.newFeature}>
+      <div className={styles.newFeature__wrapper}>
+        <Input
+          label="Title: "
           type="text"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onChange={setTitle}
+          color="white"
         />
-      </label>
-      <label>
-        Link:
-        <input
+        <Input
+          label="Link: "
           type="text"
           value={link}
-          onChange={e => setLink(e.target.value)}
+          onChange={setLink}
+          color="white"
         />
-      </label>
-      <button className="save-btn" type="button" onClick={handleAdd}>
-        Add
-      </button>
-
-      {message && (
-        <p
-          className={
-            message.error ? 'error-message' : 'success-message'
-          }
+        <button
+          className="save-btn"
+          type="button"
+          onClick={handleAdd}
         >
-          {message?.text}
-        </p>
-      )}
+          Add
+        </button>
+
+        {message && (
+          <p
+            className={
+              message.error ? 'error-message' : 'success-message'
+            }
+          >
+            {message?.text}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

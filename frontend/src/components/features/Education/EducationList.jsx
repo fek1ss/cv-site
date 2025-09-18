@@ -1,11 +1,8 @@
-import { useEffect, useState } from 'react';
 import styles from './eduList.module.scss';
-import Input from './../../Input/Input';
 import EducationCard from './EducationCard';
 import { degreeIcons } from '../../constants/degreeIcons';
 
-const EducationList = ({ educations, onSuccess, isAdmin }) => {
-
+const EducationList = ({ educations, isAdmin, onSuccess }) => {
   return (
     <div className={styles.eduList}>
       {isAdmin ? (
@@ -13,9 +10,9 @@ const EducationList = ({ educations, onSuccess, isAdmin }) => {
         <>
           {educations.map(edu => (
             <EducationCard
+              onSuccess={onSuccess}
               key={edu.id}
               education={edu}
-              degreeIcons={edu.degreeShort}
               degreeShort={edu.degreeShort}
               degreeFull={edu.degreeFull}
               university={edu.university}
@@ -28,7 +25,7 @@ const EducationList = ({ educations, onSuccess, isAdmin }) => {
         // показывать на главной странице
         <>
           {educations.map(edu => (
-            <div className={styles.eduList__item}>
+            <div key={edu.id} className={styles.eduList__item}>
               <img
                 src={degreeIcons[edu.degreeShort]}
                 alt="degree icon"
@@ -38,9 +35,21 @@ const EducationList = ({ educations, onSuccess, isAdmin }) => {
                 <h1 className={styles.eduList__degreeShort}>
                   {edu.degreeShort}
                 </h1>
-                <p className={styles.eduList__degreeFull}>
-                  {edu.degreeFull}
-                </p>
+                {/* ПК */}
+                <p className={`${styles.eduList__eduPc}`}>{edu.degreeFull}</p>
+
+                {/* Мобилки */}
+                <div className={styles.eduList__eduMobile}>
+                  {edu.degreeFull.split(',').map((value, idx) => (
+                    <p
+                      key={idx}
+                      className={styles.eduList__degreeFull}
+                    >
+                      {value.trim()}
+                    </p>
+                  ))}
+                </div>
+
                 <p className={styles.eduList__university}>
                   {edu.university}
                 </p>

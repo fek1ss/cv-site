@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import styles from './newcontact.module.scss';
+import styles from '../../../styles/newFeature.module.scss';
 import { addContanct } from '../../../api/contactApi';
 import { useMessage } from '../../../hooks/useMessage';
+import Input from '../../Input/Input';
 
 const NewContact = ({ onLoad }) => {
   const [label, setLabel] = useState('');
@@ -16,7 +17,7 @@ const NewContact = ({ onLoad }) => {
         onLoad();
         showMessage(data.message, false);
         setLabel('');
-        setLink('')
+        setLink('');
       }
     } catch (err) {
       showMessage('Error during the update', true);
@@ -24,52 +25,47 @@ const NewContact = ({ onLoad }) => {
   };
 
   return (
-    <div className={styles.conItem}>
-      <label>
-        Icon:
-        <input
-          className={styles.conItem__inp_icon}
+    <div className={styles.newFeature}>
+      <div className={styles.newFeature__wrapper}>
+        <Input
+          label="Icon: "
           type="file"
-          onChange={e => setIcon(e.target.files[0])}
+          onChange={setIcon}
+          color="white"
         />
-      </label>
-
-      <label>
-        Label:
-        <input
-          className={styles.conItem__inp}
+        <Input
+          label="Label: "
           type="text"
           value={label}
-          onChange={e => setLabel(e.target.value)}
+          onChange={setLabel}
+          color="white"
         />
-      </label>
 
-      <label>
-        Link:
-        <input
-          className={styles.conItem__inp}
+        <Input
+          label="Link: "
           type="text"
           value={link}
-          onChange={e => setLink(e.target.value)}
+          onChange={setLink}
+          color="white"
         />
-      </label>
 
-      <button
-        type="button"
-        className="save-btn"
-        onClick={handleAddContact}
-      >
-        Add
-      </button>
-      {message && (
-        <p
-          className={
-            message.error ? 'error-message' : 'success-message'
-          }
+        <button
+          type="button"
+          className="save-btn"
+          onClick={handleAddContact}
         >
-          {message?.text}
-        </p>
-      )}
+          Add
+        </button>
+        {message && (
+          <p
+            className={
+              message.error ? 'error-message' : 'success-message'
+            }
+          >
+            {message?.text}
+          </p>
+        )}
+      </div>
     </div>
   );
 };

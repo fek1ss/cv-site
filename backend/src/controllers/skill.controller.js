@@ -54,7 +54,7 @@ export const updateSkill = async (req, res) => {
     );
 
     if (result.changedRows === 0) {
-      return res.status(200).json({ error: "Nothing changed" });
+      return res.status(200).json({ error: " changed" });
     }
 
     res.json({ message: "Skill updated", iconUrl });

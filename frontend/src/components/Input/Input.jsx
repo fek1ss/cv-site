@@ -8,31 +8,38 @@ const Input = ({ label, value, onChange, type, color }) => {
       </p>
       {type === 'text' && (
         <input
-          style={{ color:color, borderBottom:`1px solid ${color}` }}
+          style={{ color: color, borderBottom: `1px solid ${color}` }}
           className={styles.inputText}
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
         />
       )}
-      {
-        type === 'date' && (
-          <input
-            className={styles.inputFile}
-            type="file"
-            onChange={e => onChange(e.target.files[0])}
-          />
-        )
-      }
-      {
-        type === 'number' && (
-          <input
-            className={styles.inputNumber}
-            type="number"
-            onChange={e => onChange(e.target.files[0])}
-          />
-        )
-      }
+      {type === 'date' && (
+        <input
+          className={styles.inputFile}
+          type="date"
+          value={value || ''}
+          onChange={e => onChange(e.target.value)}
+        />
+      )}
+      {type === 'number' && (
+        <input
+          style={{ color, borderBottom: `1px solid ${color}` }}
+          className={styles.inputNumber}
+          type="number"
+          onChange={e => onChange(e.target.value)}
+        />
+      )}
+
+      {type === 'file' && (
+        <input
+          style={{ color}}
+          className={styles.inputFile}
+          type="file"
+          onChange={e => onChange(e.target.files[0])}
+        />
+      )}
     </label>
   );
 };

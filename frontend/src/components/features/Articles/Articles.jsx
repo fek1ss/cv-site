@@ -10,15 +10,16 @@ import { useNavigate } from 'react-router-dom';
 import { me } from '../../../api/userApi';
 import { MdArrowBack } from 'react-icons/md';
 import NewArticle from './NewArticle';
+import { useMessageId } from '../../../hooks/useMessageId';
 
 
 const Articles = ({ isAdmin = false }) => {
   const [articles, setArticles] = useState([]);
   const [visibleCount, setVisibleCount] = useState(5);
   const [flag, setFlag] = useState(false);
-  const [message, setMessage] = useState({});
   const navigate = useNavigate();
   const [status, setStatus] = useState(false);
+  const { message, showMessage } = useMessageId();
 
   useEffect(() => {
     if (isAdmin) {
@@ -48,23 +49,10 @@ const Articles = ({ isAdmin = false }) => {
     try {
       const data = await updateArticle(id, title, link);
       if (data) {
-        setMessage(prev => ({
-          ...prev,
-          [id]: { text: 'Article updated', error: false },
-        }));
+        showMessage('Article updated', false, id)
       }
-      setTimeout(() => {
-        setMessage(prev => ({
-          ...prev,
-          [id]: { text: '', error: false },
-        }));
-      }, 1500);
     } catch (err) {
-      console.log(err);
-      setMessage(prev => ({
-        ...prev,
-        [id]: { text: 'Error updateding article', error: true },
-      }));
+      showMessage(`Error updateding article: ${err}`, true, id)
     }
   };
 
@@ -73,27 +61,10 @@ const Articles = ({ isAdmin = false }) => {
       const data = await deleteArticle(id);
       if (data.status === 200) {
         loadArts();
-        setMessage(prev => ({
-          ...prev,
-          [id]: {
-            text: data.message || 'successfully deleted',
-            error: false,
-          },
-        }));
-
-        setTimeout(() => {
-          setMessage(prev => ({
-            ...prev,
-            [id]: { text: '', error: false },
-          }));
-        }, 1500);
+        showMessage(data.message || 'successfully deleted', false, id)
       }
     } catch (err) {
-      console.log(err);
-      setMessage(prev => ({
-        ...prev,
-        [id]: { text: 'Error delete', error: true },
-      }));
+      showMessage(`Error delete: ${err}`, true, id)
     }
   };
 

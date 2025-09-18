@@ -2,35 +2,49 @@ import { useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import { motion } from 'framer-motion';
 import { getEducations } from './../../../api/educationApi';
-import { useMessage } from '../../../hooks/useMessage';
 import NewEducation from './NewEducation';
 import EducationList from './EducationList';
+import { MdArrowBack } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { me } from '../../../api/userApi';
 
 const Education = ({ isAdmin = false }) => {
   const [educations, setEducations] = useState([]);
-  const { message, showMessage } = useMessage();
+  const navigate = useNavigate();
+  const [status, setStatus] = useState(false);
 
   useEffect(() => {
+    if (isAdmin) {
+      me()
+        .then(() => setStatus(true))
+        .catch(() => navigate('/login'));
+    }
     loadEdu();
-  }, []);
+  }, [isAdmin, navigate]);
 
   const loadEdu = () => {
-    getEducations()
-    .then(data => setEducations(data)
-  );
-  }
+    getEducations().then(data => setEducations(data));
+  };
 
-  // const handleUpdate = async (degreeShort, degreeFull, university, yearStart, yearEnd) => {
-  //   try {
-  //   } catch (err) {}
-  // };
+  if (isAdmin && !status) return <p>loading...</p>;
 
   return (
     <>
       {isAdmin ? (
         <div className="adm">
-          <NewEducation onSuccess={()=>loadEdu()} />
-          <EducationList isAdmin={true} educations={educations} onSuccess={()=>loadEdu()} />
+          <MdArrowBack
+            className="back"
+            onClick={() => navigate(-1)}
+          />
+          <div className="wrapper">
+            <h1 style={{ fontWeight: 400 }}>Education</h1>
+            <NewEducation onSuccess={() => loadEdu()} />
+            <EducationList
+              isAdmin={true}
+              educations={educations}
+              onSuccess={() => loadEdu()}
+            />
+          </div>
         </div>
       ) : (
         <motion.section

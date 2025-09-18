@@ -46,7 +46,7 @@ const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
           <>
             <button
               type="button"
-              onClick={() => onDelete(skill.id)}
+              onClick={handleDelete}
               className={styles.deleteBtn}
             >
               Delete
@@ -58,7 +58,7 @@ const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
         ) : (
           <button
             type="button"
-            onClick={() => onCreate({ name, icon })}
+            onClick={handleCreate}
             className="save-btn"
           >
             Create

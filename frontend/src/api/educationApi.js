@@ -5,6 +5,19 @@ export const getEducations = async() => {
   return res.json();
 }
 
+export const createEducation = async({degreeShort, degreeFull, university, yearStart, yearEnd}) => {
+  const res = await fetch(`${API_URL}/api/education`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({degreeShort, degreeFull, university, yearStart, yearEnd})
+  })
+
+  if(!res.ok) throw new Error("Error during the update");
+    
+  const data = await res.json();
+  return data; 
+}
+
 export const updateEducation = async({id, degreeShort, degreeFull, university, yearStart, yearEnd}) => {
   const res = await fetch(`${API_URL}/api/education/${id}`, {
     method: 'PATCH',
@@ -15,7 +28,7 @@ export const updateEducation = async({id, degreeShort, degreeFull, university, y
   if(!res.ok) throw new Error("Error during the update");
     
   const data = await res.json();
-  return data
+  return data;
 }
 
 export const deleteEducation = (id) => {

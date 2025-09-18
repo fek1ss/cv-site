@@ -10,7 +10,7 @@ export const createProject = async ({
   description,
   dateStart,
   dateEnd,
-  imageUrl,
+  image,
   link,
 }) => {
   const formData = new FormData();
@@ -18,7 +18,7 @@ export const createProject = async ({
   formData.append('description', description);
   formData.append('dateStart', dateStart);
   formData.append('dateEnd', dateEnd);
-  formData.append('imageUrl', imageUrl);
+  formData.append('image', image);
   formData.append('link', link);
 
   const res = await fetch(`${API_URL}/api/projects`, {
@@ -38,15 +38,15 @@ export const updateProject = async({
   description,
   dateStart,
   dateEnd,
-  imageUrl,
+  image,
   link,
 }) => {
-  const formData = FormData();
+  const formData = new FormData();
   formData.append('name', name);
   formData.append('description', description);
   formData.append('dateStart', dateStart);
   formData.append('dateEnd', dateEnd);
-  formData.append('imageUrl', imageUrl);
+  formData.append('image', image);
   formData.append('link', link);
 
   const res = await fetch(`${API_URL}/api/projects/${id}`, {

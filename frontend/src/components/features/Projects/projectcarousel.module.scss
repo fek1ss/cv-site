@@ -7,17 +7,17 @@
   :global(.carousel-control-prev),
   :global(.carousel-control-next) {
     filter: brightness(0) invert(1);
-    width: auto; 
+    width: auto;
     top: 50%;
     transform: translateY(-50%);
   }
 
   :global(.carousel-control-prev) {
-    left: -50px; 
+    left: -50px;
   }
 
   :global(.carousel-control-next) {
-    right: -50px; 
+    right: -50px;
   }
 
   :global(.carousel-control-prev-icon),
@@ -101,5 +101,16 @@
 
   &__date {
     color: var(--link-color);
+  }
+}
+
+@media (max-width: 767px) {
+  .carousel {
+    :global(.carousel-control-next) {
+      display: none;
+    }
+    :global(.carousel-control-prev) {
+      display: none;
+    }
   }
 }

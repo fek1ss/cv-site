@@ -28,7 +28,6 @@
     }, [isAdmin, navigate]);
 
 
-    // function update 
     const handleUpdate = async e => {
       e.preventDefault();
 
@@ -58,6 +57,7 @@
                   <h1 className={styles.about__title}>About me</h1>
                 </div>
                 <textarea
+                  name='about'
                   className="textarea"
                   value={text}
                   onChange={e => setText(e.target.value)}

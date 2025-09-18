@@ -9,6 +9,8 @@ import Articles from './components/features/Articles/Articles';
 import Experience from './components/features/SkillsExperience/Experience/Experience';
 import Contacts from './components/layout/Contacts/Contacts';
 import Education from './components/features/Education/Education';
+import Books from './components/features/Books/Books';
+import Project from './components/features/Projects/Projects';
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
         <Route path='/admin/hero' element={<Hero isAdmin={true} />} />
         <Route path='/admin/skills' element={<Skills isAdmin={true} />} />
         <Route path='/admin/experience' element={<Experience isAdmin={true} />} />
+        <Route path='/admin/projects' element={<Project isAdmin={true} />} />
         <Route path='/admin/articles' element={<Articles isAdmin={true} />} />
+        <Route path='/admin/books' element={<Books isAdmin={true} />} />
         <Route path='/admin/contacts' element={<Contacts isAdmin={true} />} />
       </Routes>
     </BrowserRouter>

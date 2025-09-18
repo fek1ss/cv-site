@@ -43,15 +43,12 @@
   }
 
   // admin panel 
-
   &_adm {
     font-family: 'Roboto',serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    // width: 80%;
-    // margin: 0 auto;
     
     &__actives {
       display: flex;
@@ -78,7 +75,6 @@
 
 @media (max-width: 667px) {
   .hero {
-    
     margin: 3rem 0;
 
     &__wrapper {
@@ -101,7 +97,7 @@
     &__text {
       text-align: center;
       font-size: 15px;
-      width: 100%;
+      width: 90%;
     }
   }
 }

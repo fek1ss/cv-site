@@ -1,18 +1,19 @@
 .eduList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 
   &__item {
     display: flex;
-    align-items: center; 
-    gap: 1rem;
-    width: 60%;
-    background: linear-gradient(135deg, #0c2e5e, #04152D);
-    color: #ffffff; 
-    padding: 20px 25px; 
-    border-radius: 12px; 
+    align-items: center;
+    justify-content: start;
+    gap: 2rem;
+    width: 70%;
+    background: linear-gradient(135deg, #0c2e5e, #04152d);
+    color: #ffffff;
+    padding: 20px 25px;
+    border-radius: 12px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     margin: 1rem 0;
   }
@@ -23,16 +24,75 @@
     gap: 0;
   }
 
-  &__data h1, p {
+  &__data h1,
+  p {
     margin: 0;
+    flex-wrap: wrap;
+  }
+
+  &__data p {
+    font-size: 20px;
+  }
+
+  &__eduPc {
+    color: #e7e7e7;
   }
 
   &__degreeIcon {
-    width: 15%;
+    width: 18%;
   }
 
   &__date {
-    color: #dee0e1;
+    color: #cac8c8;
   }
 
+  &__actions {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__eduMobile {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .eduList {
+    width: 100%;
+
+    &__item {
+      padding: 1rem;
+      width: 100%;
+    }
+
+    &__degreeIcon {
+      width: 23%;
+    }
+
+    &__data {
+      width: 100%;
+    }
+
+    &__degreeShort {
+      font-size: 23px;
+    }
+
+    &__eduPc {
+      display: none;
+    }
+
+    &__eduMobile {
+      display: block;
+    }
+
+    &__data p {
+      font-size: 16px;
+      width: 100%;
+    }
+
+    &__actions {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
 }

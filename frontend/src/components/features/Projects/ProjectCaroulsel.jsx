@@ -26,7 +26,7 @@ const ProjectCarousel = () => {
             </div>
             <div className={styles.slideContent__darkImage}>
               <a href={prj.link}>Link</a>
-              <img src={prj.imageUrl} alt="Project preview" />
+              <img src={prj.imageUrl || '../../../../public/assets/project.png '} alt="Project preview" />
             </div>
           </div>
         </Carousel.Item>

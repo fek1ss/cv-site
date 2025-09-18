@@ -11,7 +11,7 @@ import { useMessage } from '../../../../hooks/useMessage';
 import { me } from '../../../../api/userApi';
 import { MdArrowBack } from 'react-icons/md';
 import SkillModal from './SkillModal';
-
+import { FaPlus } from 'react-icons/fa6';
 
 const Skills = ({ isAdmin = false }) => {
   const [skills, setSkills] = useState([]);
@@ -104,7 +104,7 @@ const Skills = ({ isAdmin = false }) => {
                   className={styles.skills_btn}
                   onClick={() => setSelectedSkills({})}
                 >
-                  +
+                  <FaPlus />
                 </button>
                 <p className={styles.skills__name}>Add new skill</p>
               </div>

@@ -5,6 +5,10 @@
   h1 {
     font-weight: 400;
   }
+}
 
-  
+@media (max-width: 667px) {
+  .education {
+    width: 90%;
+  }
 }

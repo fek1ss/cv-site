@@ -9,12 +9,13 @@ import { updatePosition } from '../../../../api/positionApi';
 import { normalizeDate } from '../../../../utils/normalizeDate';
 import Input from './../../../Input/Input';
 import BaseModal from '../../../BaseModal/BaseModal';
+import { useMessageId } from '../../../../hooks/useMessageId';
 
 const ExperienceModal = ({ experience, onClose }) => {
   const [name, setName] = useState('');
   const [icon, setIcon] = useState(null);
   const [positions, setPositions] = useState([]);
-  const [message, setMessage] = useState({});
+  const { message, showMessage } = useMessageId();
 
   useEffect(() => {
     if (experience) {
@@ -43,34 +44,16 @@ const ExperienceModal = ({ experience, onClose }) => {
         companyId,
       });
       if (res) {
-        setMessage(prev => ({
-          ...prev,
-          [pos.id]: { text: 'Updated success', error: false },
-        }));
-        setTimeout(() => {
-          setMessage(prev => ({ ...prev, [pos.id]: null }));
-        }, 1500);
+        showMessage('Updated success', false, pos.id)
       }
     } catch (err) {
-      setMessage(prev => ({
-        ...prev,
-        [pos.id]: { text: 'Error updating', error: true },
-      }));
-      setTimeout(() => {
-        setMessage(prev => ({ ...prev, [pos.id]: null }));
-      }, 1500);
+      showMessage(`Error updating: ${err}`, true, pos.id)
     }
   };
 
   const handleUpdateCompany = async () => {
     if (name === experience.name) {
-      setMessage(prev => ({
-        ...prev,
-        [experience.id]: {
-          text: 'No changes in the name',
-          error: true,
-        },
-      }));
+      showMessage('No changes in the name', true, experience.id)
       return;
     }
 
@@ -81,25 +64,10 @@ const ExperienceModal = ({ experience, onClose }) => {
         id: experience.id,
       });
       if (res) {
-        setMessage(prev => ({
-          ...prev,
-          [experience.id]: { text: 'Company updated', error: false },
-        }));
-        setTimeout(() => {
-          setMessage(prev => ({ ...prev, [experience.id]: null }));
-        }, 1500);
+        showMessage("Company updated", false, experience.id)
       }
     } catch (err) {
-      setMessage(prev => ({
-        ...prev,
-        [experience.id]: {
-          text: 'Error updating company',
-          error: true,
-        },
-      }));
-      setTimeout(() => {
-        setMessage(prev => ({ ...prev, [experience.id]: null }));
-      }, 1500);
+      showMessage("Error updating company", true, experience.id)
     }
   };
 

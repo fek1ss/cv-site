@@ -27,7 +27,9 @@ const Admin = () => {
         <Link to="/admin/education"> Education </Link>
         <Link to="/admin/skills"> Skills </Link>
         <Link to="/admin/experience"> Experience </Link>
+        <Link to="/admin/projects"> Projects </Link>
         <Link to="/admin/articles"> Article </Link>
+        <Link to="/admin/books"> Books </Link>
         <Link to="/admin/contacts"> Contacts </Link>
       </nav>
       <MdArrowBack className="back" onClick={() => navigate(-1)} />
