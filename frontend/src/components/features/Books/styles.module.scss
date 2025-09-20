@@ -3,7 +3,6 @@
   margin: 5rem auto;
 }
 
-
 .carousel {
   position: relative;
   width: 50%;
@@ -83,9 +82,8 @@
     width: 100%;
     text-align: start;
     color: #575757 !important;
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
-
 
   &__author {
     text-align: start;
@@ -111,9 +109,8 @@
   }
 }
 
-
-@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-	.carousel {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .carousel {
     width: 100%;
   }
 }
@@ -128,6 +125,7 @@
     :global(.carousel-control-prev) {
       display: none;
     }
+    
   }
 
   .slideContent {

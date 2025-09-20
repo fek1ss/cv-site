@@ -17,6 +17,7 @@ const Input = ({ label, value, onChange, type, color }) => {
       )}
       {type === 'date' && (
         <input
+          style={{ color: color, borderBottom: `1px solid ${color}` }}
           className={styles.inputFile}
           type="date"
           value={value || ''}
@@ -28,13 +29,14 @@ const Input = ({ label, value, onChange, type, color }) => {
           style={{ color, borderBottom: `1px solid ${color}` }}
           className={styles.inputNumber}
           type="number"
+          value={value ?? ''}
           onChange={e => onChange(e.target.value)}
         />
       )}
 
       {type === 'file' && (
         <input
-          style={{ color}}
+          style={{ borderBottom: `1px solid ${color}` }}
           className={styles.inputFile}
           type="file"
           onChange={e => onChange(e.target.files[0])}

@@ -8,6 +8,10 @@
   padding: 0;
   width: 100%;
 
+  input {
+    border-bottom: 1px solid white;
+  }
+
   &__name {
     margin: 0;
     padding: 0;
@@ -42,7 +46,7 @@
   border: none;
   outline: none;
   width: 60%;
-  max-width: 100%;  /* чтобы не вылазил */
+  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -72,10 +76,9 @@
   border: none;
   outline: none;
   width: 15%;
-  max-width: 100%;  
+  max-width: 100%;
   box-sizing: border-box;
 }
-
 
 @media (max-width: 414px) {
   .label {
@@ -84,18 +87,37 @@
   }
 }
 
-
-
 @media (max-width: 667px) {
+  .label {
+    flex-direction: column;
+    align-items: start;
+    gap: 0.5rem;
+
+    input {
+      width: 80%;
+      border: 1px solid white;
+      border-radius: 5px;
+      font-size: 18px;
+      padding: 0.3rem;
+    }
+
+    &__name {
+      font-size: 14px;
+    }
+  }
+
+  .inputText {
+    margin: 0;
+  }
 
   .inputFile {
     background-color: #419152;
     padding: 8px 16px;
     border-radius: 4px;
-    width: 40%  ;
+    width: 40%;
+    color: white;
     &::file-selector-button {
       display: none;
     }
   }
 }
-

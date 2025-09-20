@@ -12,7 +12,7 @@ export const createEducation = async({degreeShort, degreeFull, university, yearS
     body: JSON.stringify({degreeShort, degreeFull, university, yearStart, yearEnd})
   })
 
-  if(!res.ok) throw new Error("Error during the update");
+  if(!res.ok) throw new Error("Error during the create");
     
   const data = await res.json();
   return data; 
@@ -25,7 +25,7 @@ export const updateEducation = async({id, degreeShort, degreeFull, university, y
     body: JSON.stringify({degreeShort, degreeFull, university, yearStart, yearEnd})
   })
 
-  if(!res.ok) throw new Error("Error during the update");
+  if(!res.ok) throw new Error("Error during the update1");
     
   const data = await res.json();
   return data;

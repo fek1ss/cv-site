@@ -1,9 +1,9 @@
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 // GET /api/hero
 export const getHeroes = async (req, res) => {
   try {
-    const [rows] = await connection.query("SELECT * FROM Hero ORDER BY id DESC");
+    const [rows] = await connection.query("SELECT * FROM hero ORDER BY id DESC");
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -15,7 +15,7 @@ export const createHero = async (req, res) => {
   const { name, photoUrl, summary } = req.body;
   try {
     const [result] = await connection.query(
-      "INSERT INTO Hero (name, photoUrl, summary) VALUES (?, ?, ?)",
+      "INSERT INTO hero (name, photoUrl, summary) VALUES (?, ?, ?)",
       [name, photoUrl, summary]
     );
     res.json({ message: "Hero created", heroId: result.insertId });
@@ -40,13 +40,13 @@ export const updateHero = async (req, res) => {
     // если файл загружен — обновляем вместе с фото
     if (photoUrl) {
       await connection.query(
-        "UPDATE Hero SET name=?, summary=?, photoUrl=? WHERE id=?",
+        "UPDATE hero SET name=?, summary=?, photoUrl=? WHERE id=?",
         [name, summary, photoUrl, id]
       );
     } else {
       // если фото не передавалось, обновляем только текст
       await connection.query(
-        "UPDATE Hero SET name=?, summary=? WHERE id=?",
+        "UPDATE hero SET name=?, summary=? WHERE id=?",
         [name, summary, id]
       );
     }
@@ -62,7 +62,7 @@ export const updateHero = async (req, res) => {
 export const deleteHero = async (req, res) => {
   const { id } = req.params;
   try {
-    await connection.query("DELETE FROM Hero WHERE id=?", [id]);
+    await connection.query("DELETE FROM hero WHERE id=?", [id]);
     res.json({ message: "Hero deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

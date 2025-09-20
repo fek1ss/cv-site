@@ -90,7 +90,7 @@ const Contacts = ({ isAdmin = false }) => {
                       onChange={e => setIcon(e.target.files[0])}
                     />
                     <label>
-                      Label:
+                      Contact:
                       <input
                         className={styles.contacts_adm__inp}
                         id="label"

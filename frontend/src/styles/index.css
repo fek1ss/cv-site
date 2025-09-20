@@ -43,10 +43,6 @@ h4 {
   color: var(--text-color) !important;
 }
 
-a {
-  /* text-decoration: none !important; */
-}
-
 .decor {
   inset: 0;
   pointer-events: none;

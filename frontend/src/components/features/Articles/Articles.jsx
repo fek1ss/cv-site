@@ -154,8 +154,8 @@ const Articles = ({ isAdmin = false }) => {
         <motion.div
           className={styles.articles}
           id="articles"
-          initial={{ y: 200, opacity: 0 }} // снизу
-          whileInView={{ y: 0, opacity: 1 }} // встает на место
+          initial={{ y: 200, opacity: 0 }} 
+          whileInView={{ y: 0, opacity: 1 }} 
           transition={{ duration: 0.8, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.2 }}
         >
@@ -163,7 +163,7 @@ const Articles = ({ isAdmin = false }) => {
             <h1 style={{ fontWeight: 400 }}>Articles</h1>
             {articles.slice(0, visibleCount).map(art => (
               <div className={styles.articles__art} key={art.id}>
-                <a href={art.articles__link} target="_blank">
+                <a href={art.link} target="_blank" className={styles.articles__link}>
                   <h1 className={styles.articles__title}>
                     {art.title}
                   </h1>

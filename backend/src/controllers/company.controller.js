@@ -1,12 +1,12 @@
 // backend/src/controllers/company.controller.js
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 // GET /api/company — компании с их позициями
 export const getCompanies = async (req, res) => {
   const sql = `
     SELECT c.id as companyId, c.name as companyName, c.logoUrl,
     p.id as positionId, p.title, p.startDate, p.endDate
-    FROM Company c
+    FROM company c
     LEFT JOIN positions p ON c.id = p.companyId
     ORDER BY c.id, p.startDate DESC
   `;
@@ -57,7 +57,7 @@ export const createCompany = async (req, res) => {
     }
 
     const [result] = await connection.query(
-      "INSERT INTO Company (name, logoUrl) VALUES (?, ?)",
+      "INSERT INTO company (name, logoUrl) VALUES (?, ?)",
       [name, logoUrl]
     );
 
@@ -85,7 +85,7 @@ export const updateCompany = async (req, res) => {
     }
 
     await connection.query(
-      "UPDATE Company SET name=?, logoUrl=COALESCE(?, logoUrl) WHERE id=?",
+      "UPDATE company SET name=?, logoUrl=COALESCE(?, logoUrl) WHERE id=?",
       [name, logoUrl, id]
     );
 
@@ -100,7 +100,7 @@ export const updateCompany = async (req, res) => {
 export const deleteCompany = async (req, res) => {
   const { id } = req.params;
   try {
-    await connection.query("DELETE FROM Company WHERE id=?", [id]);
+    await connection.query("DELETE FROM company WHERE id=?", [id]);
     res.json({ message: "Company deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

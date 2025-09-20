@@ -1,4 +1,4 @@
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 export const getEducations = async (req, res) => {
   try {

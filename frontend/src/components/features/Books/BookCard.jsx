@@ -50,8 +50,7 @@ const BookCard = ({ id, title, description, link, authors, onSuccess }) => {
     try {
       const data = await deleteBook(id);
       if(data.ok) {
-        console.log(data)
-        onSuccess();
+        showMessage("Deleted", false, id)
       }
     } catch (err) {
       showMessage(`something went wrong... ${err}`, true, id);

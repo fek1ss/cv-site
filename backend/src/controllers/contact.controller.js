@@ -1,10 +1,10 @@
 // backend/src/controllers/contact.controller.js
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 // GET /api/contact
 export const getContacts = async (req, res) => {
   try {
-    const [rows] = await connection.query("SELECT * FROM Contact ORDER BY id DESC");
+    const [rows] = await connection.query("SELECT * FROM contact ORDER BY id DESC");
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -23,7 +23,7 @@ export const createContact = async (req, res) => {
     }
 
     const [result] = await connection.query(
-      "INSERT INTO Contact (label, link, iconUrl) VALUES (?, ?, ?)",
+      "INSERT INTO contact (label, link, iconUrl) VALUES (?, ?, ?)",
       [label, link, iconUrl]
     );
 
@@ -38,7 +38,6 @@ export const createContact = async (req, res) => {
   }
 };
 
-// PUT /api/contact/:id
 export const updateContact = async (req, res) => {
   const { id } = req.params;
   const { label, link } = req.body;
@@ -62,12 +61,11 @@ export const updateContact = async (req, res) => {
   }
 };
 
-
 // DELETE /api/contact/:id
 export const deleteContact = async (req, res) => {
   const { id } = req.params;
   try {
-    await connection.query("DELETE FROM Contact WHERE id=?", [id]);
+    await connection.query("DELETE FROM contact WHERE id=?", [id]);
     res.json({ message: "Contact deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });

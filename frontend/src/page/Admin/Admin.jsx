@@ -19,20 +19,25 @@ const Admin = () => {
 
   return (
     <div className={styles.admin}>
-      <h1>Welcome, {user.name}</h1>
-      <h4>What do you want to edit?</h4>
-      <nav className={styles.admin__nav}>
-        <Link to="/admin/hero"> Hero </Link>
-        <Link to="/admin/about"> About me </Link>
-        <Link to="/admin/education"> Education </Link>
-        <Link to="/admin/skills"> Skills </Link>
-        <Link to="/admin/experience"> Experience </Link>
-        <Link to="/admin/projects"> Projects </Link>
-        <Link to="/admin/articles"> Article </Link>
-        <Link to="/admin/books"> Books </Link>
-        <Link to="/admin/contacts"> Contacts </Link>
-      </nav>
-      <MdArrowBack className="back" onClick={() => navigate(-1)} />
+      <div className={styles.admin__wrapper}>
+        <MdArrowBack
+          className={styles.admin__back}
+          onClick={() => navigate(-1)}
+        />
+        <h1>Welcome, {user.name}</h1>
+        <h4>What do you want to edit?</h4>
+        <nav className={styles.admin__nav}>
+          <Link to="/admin/hero"> Hero </Link>
+          <Link to="/admin/about"> About me </Link>
+          <Link to="/admin/education"> Education </Link>
+          <Link to="/admin/skills"> Skills </Link>
+          <Link to="/admin/experience"> Experience </Link>
+          <Link to="/admin/projects"> Projects </Link>
+          <Link to="/admin/articles"> Article </Link>
+          <Link to="/admin/books"> Books </Link>
+          <Link to="/admin/contacts"> Contacts </Link>
+        </nav>
+      </div>
     </div>
   );
 };

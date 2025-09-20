@@ -8,8 +8,8 @@ const NewEducation = ({ onSuccess }) => {
   const [degreeShort, setDegreeShort] = useState('');
   const [degreeFull, setDegreeFull] = useState('');
   const [university, setUniversity] = useState('');
-  const [yearStart, setYearStart] = useState(null);
-  const [yearEnd, setYearEnd] = useState(null);
+  const [yearStart, setYearStart] = useState();
+  const [yearEnd, setYearEnd] = useState();
   const { message, showMessage } = useMessage();
 
   const handleCreate = async () => {
@@ -18,7 +18,7 @@ const NewEducation = ({ onSuccess }) => {
       degreeFull === '' ||
       university === '' ||
       yearStart === null ||
-      yearEnd === null
+      yearEnd === null  
     ) {
       showMessage('fill in all fields', true);
       return;
@@ -28,8 +28,8 @@ const NewEducation = ({ onSuccess }) => {
         degreeShort,
         degreeFull,
         university,
-        yearStart,
-        yearEnd,
+        yearStart: Number(yearStart),
+        yearEnd: Number(yearEnd),
       });
       if (data.id) {
         showMessage('Education added', false);
@@ -42,6 +42,7 @@ const NewEducation = ({ onSuccess }) => {
       }
     } catch (err) {
       showMessage(`${err}`, true);
+      console.log(err);
     }
   };
 

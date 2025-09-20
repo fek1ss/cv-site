@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { MdArrowBack } from 'react-icons/md';
 import { getProject } from '../../../api/projectApi';
 import { me } from '../../../api/userApi';
+import { AnimatePresence } from 'framer-motion';
 
 const Project = ({ isAdmin = false }) => {
   const [projects, setProjects] = useState([]);
@@ -67,27 +68,29 @@ const Project = ({ isAdmin = false }) => {
               {carousel ? 'show as a carousel' : 'show as a list'}
             </button>
           </div>
-          {carousel ? (
-            <motion.div
-              key="list"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-            >
-              <ProjectList projects={projects} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="carousel"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: 'easeInOut' }}
-            >
-              <ProjectCarousel />
-            </motion.div>
-          )}
+          <AnimatePresence mode="wait">
+            {carousel ? (
+              <motion.div
+                key="list"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              >
+                <ProjectList projects={projects} />
+              </motion.div>
+            ) : (
+              <motion.div
+                key="carousel"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: 'easeInOut' }}
+              >
+                <ProjectCarousel />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.section>
       )}
     </>

@@ -6,7 +6,36 @@
 }
 
 .carousel :global(.carousel-indicators) {
-  position: relative;  /* убираем absolute */
+  position: relative;
   top: 20rem;
-  justify-content: center; /* выравнивание по центру */
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .books {
+    margin: 2rem auto;
+    h1 {
+      margin-bottom: 2rem;
+    }
+    margin-top: 3rem;
+  }
+
+  .carousel {
+    margin: 0;
+    width: 100%;
+    :global(.carousel-control-next) {
+      display: none;
+    }
+    :global(.carousel-control-prev) {
+      display: none;
+    }
+
+    :global(.carousel-item) {
+      width: 100%;
+    }
+
+    :global(.carousel-indicators) {
+      display: none;
+    }
+  }
 }

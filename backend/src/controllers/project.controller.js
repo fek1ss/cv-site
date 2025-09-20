@@ -1,4 +1,4 @@
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 export const getProjects = async (req, res) => {
   try {

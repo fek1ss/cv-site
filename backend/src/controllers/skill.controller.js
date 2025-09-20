@@ -1,4 +1,4 @@
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 export const getSkills = async (req, res) => {
   try {
@@ -54,7 +54,7 @@ export const updateSkill = async (req, res) => {
     );
 
     if (result.changedRows === 0) {
-      return res.status(200).json({ error: " changed" });
+      return res.status(200).json({ error: "No changes" });
     }
 
     res.json({ message: "Skill updated", iconUrl });

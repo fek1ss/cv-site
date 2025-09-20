@@ -15,7 +15,6 @@
 
   &__title {
     font-weight: 400;
-    
   }
 
   &__socials {
@@ -37,6 +36,8 @@
     font-size: 25px;
     font-family: 'outfit', sans-serif;
     color: var(--text-color);
+    display: flex;
+    flex-direction: column;
   }
 
   &__label:hover {
@@ -65,12 +66,8 @@
     padding: 1rem 0;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: end;
     background-color: var(--footer-background);
-  }
-
-  &__inp {
-    color: var(--text-color) !important;
   }
 
   &__fields {
@@ -93,16 +90,17 @@
   }
 
   &__inp {
+    display: flex;
+    flex-direction: column;
     background: none;
     outline: none;
     border: 1px solid white;
     border-radius: 5px;
     padding: 5px;
-    margin-left: 1rem;
     width: 100%;
+    color: var(--text-color) !important;
+    width: 80%;
   }
-
-  
 }
 
 .conItem {
@@ -148,16 +146,6 @@
   }
 }
 
-@media(max-width: 667px) {
-  .conItem {
-    button {
-      width: 100%;
-      margin: 0 auto;
-      margin-top: 1rem;
-    }
-  }
-}
-
 @media (max-width: 667px) {
   .contacts {
     &__wrapper {
@@ -173,17 +161,29 @@
 
     &__label {
       font-size: 18px;
+      overflow-wrap: anywhere;
     }
   }
 
-  // admin panel 
+  .conItem {
+    button {
+      width: 100%;
+      margin: 0 auto;
+      margin-top: 1rem;
+    }
+  }
+
+  // admin panel
   .contacts_adm {
     &__itemAdm {
       flex-direction: column;
+      align-items: start;
+      width: 100%;
+      padding: 1rem;
     }
 
     &__inp {
-      width: 100%;
+      width: 80%;
     }
 
     &__actions {

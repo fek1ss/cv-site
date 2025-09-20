@@ -1,7 +1,7 @@
 // backend/src/controllers/user.controller.js
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 const JWT_SECRET = process.env.JWT_SECRET || "dev_secret_change_me";
 

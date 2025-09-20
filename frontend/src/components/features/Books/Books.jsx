@@ -38,6 +38,7 @@ const Books = ({ isAdmin = false }) => {
             onClick={() => navigate(-1)}
           />
           <div className="wrapper">
+            <h1>New Book</h1>
             <NewBook onSuccess={() => loadBooks()} />
             <BookList books={books} onSuccess={() => loadBooks()} />
           </div>

@@ -1,5 +1,5 @@
 // backend/src/controllers/position.controller.js
-import connection from "../db.js";
+import connection from "../db/pool.js";
 
 // GET /api/position — все позиции с названием компании
 export const getPositions = async (req, res) => {
