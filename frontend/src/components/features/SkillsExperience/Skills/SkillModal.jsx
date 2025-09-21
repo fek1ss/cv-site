@@ -33,7 +33,10 @@ const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
 
   const handleCreate = e => {
     e.preventDefault();
-    onCreate({ name, icon });
+    if (name !== '') 
+      onCreate({ name, icon });
+    else 
+      return
   };
 
   return (

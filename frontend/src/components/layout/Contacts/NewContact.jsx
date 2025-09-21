@@ -11,6 +11,11 @@ const NewContact = ({ onLoad }) => {
   const { message, showMessage } = useMessage();
 
   const handleAddContact = async () => {
+    if (label === '' && link === '') {
+      showMessage('Fill in all fields', true);
+      return;
+    }
+
     try {
       const data = await addContanct(label, link, icon);
       if (data) {

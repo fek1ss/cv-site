@@ -53,6 +53,7 @@ const Project = ({ isAdmin = false }) => {
         </div>
       ) : (
         <motion.section
+          id='projects'
           className={styles.project}
           initial={{ x: 200, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}

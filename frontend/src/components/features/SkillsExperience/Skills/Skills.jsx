@@ -80,6 +80,15 @@ const Skills = ({ isAdmin = false }) => {
           <div className={styles.skills_adm}>
             <h1 className={styles.skills__title}>Skills</h1>
             <div className={styles.skills__items}>
+              <div className={styles.skills__newSkill}>
+                <button
+                  className={styles.skills__btn}
+                  onClick={() => setSelectedSkills({})}
+                >
+                  <FaPlus />
+                </button>
+                <p className={styles.skills__name}>Add new skill</p>
+              </div>
               {skills.map(skill => (
                 <div
                   className={styles.skills__item_adm}
@@ -99,15 +108,6 @@ const Skills = ({ isAdmin = false }) => {
                   <p className={styles.skills__name}>{skill.name}</p>
                 </div>
               ))}
-              <div className={styles.skills__newSkill}>
-                <button
-                  className={styles.skills_btn}
-                  onClick={() => setSelectedSkills({})}
-                >
-                  <FaPlus />
-                </button>
-                <p className={styles.skills__name}>Add new skill</p>
-              </div>
             </div>
             {message && (
               <p

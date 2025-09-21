@@ -33,7 +33,7 @@ const NewPosition = ({ companyId, onSuccess }) => {
         setStartDate('');
         setEndDate('');
         showMessage('created', false);
-        onSuccess()
+        onSuccess();
       }
     } catch (e) {
       showMessage('something wrong...');
@@ -42,7 +42,9 @@ const NewPosition = ({ companyId, onSuccess }) => {
 
   return (
     <div className={styles.newExp}>
-      <h1 className={styles.newExp__title}>Specify the position in this company</h1>
+      <h1 className={styles.newExp__title}>
+        Specify the position in this company
+      </h1>
       <form className={styles.newExp__container}>
         <label className={styles.newExp__label}>
           <p className={styles.newExp__labelName}>Position:</p>
@@ -58,7 +60,7 @@ const NewPosition = ({ companyId, onSuccess }) => {
           <input
             type="date"
             className={styles.newExp__name}
-            value={startDate}
+            value={startDate || ''}
             onChange={e => setStartDate(e.target.value)}
           />
         </label>
@@ -79,8 +81,12 @@ const NewPosition = ({ companyId, onSuccess }) => {
             <input
               type="checkbox"
               checked={endDate === null}
-              onClick={() => {
-                setEndDate(null);
+              onChange={e => {
+                if (e.target.checked) {
+                  setEndDate(null);
+                } else {
+                  setEndDate(new Date());
+                }
               }}
             />
           </label>

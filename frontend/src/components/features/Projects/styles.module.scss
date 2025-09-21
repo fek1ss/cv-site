@@ -31,3 +31,9 @@
   width: 70%;
   margin: 5rem auto;
 }
+
+@media (max-width: 767px) {
+  .list {
+    width: 100%;
+  }
+}
