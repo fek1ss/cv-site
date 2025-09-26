@@ -48,10 +48,11 @@ header {
     .header__nav {
       position: absolute;
       top: -2rem;
+      left: 0;
       right: 0;
       background-color: var(--footer-background);
       opacity: 90%;
-      height: 70vh;
+      height: 100vh;
       width: 100%;
       transition: transform 0.3s ease-in-out;
 
@@ -84,39 +85,6 @@ header {
     .header__list {
       flex-direction: column;
     }
-    // .header__open {
-    //   top: 0;
-    //   right: 0;
-    //   transition: 1s;
-    // }
-
-    // .header__close {
-    //   top: 0;
-    //   left: 100%;
-    // }
-
-    // .header__nav {
-    //   position: absolute;
-    //   background-color: var(--footer-background);
-    //   height: 100vh;
-    //   width: 90%;
-    //   ul {
-    //     margin-top: 2rem;
-    //     display: flex;
-    //     flex-direction: column;
-    //     justify-content: center;
-    //     align-items: start;
-    //     gap: 1rem;
-    //   }
-
-    //   li a {
-    //     font-size: 24px;
-    //   }
-    // }
-
-    // .header__humberger {
-    //   display: block;
-    // }
   }
 
   .hamburgerWrapper {

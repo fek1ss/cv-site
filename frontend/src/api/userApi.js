@@ -11,7 +11,7 @@ export const login = async({email, password}) => {
     if(!res.ok) throw new Error("Invalid email or password");
 
     const data = await res.json();
-    localStorage.setItem("token", data.token)
+    sessionStorage.setItem("token", data.token)
     
     return data;
   } catch (err) {
@@ -21,7 +21,7 @@ export const login = async({email, password}) => {
 }
 
 export const me = async () => {
-  const token = localStorage.getItem("token"); 
+  const token = sessionStorage.getItem("token"); 
   if (!token) throw new Error("No token");
 
   const res = await fetch("http://localhost:5000/api/users/me", {

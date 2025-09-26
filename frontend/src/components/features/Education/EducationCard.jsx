@@ -8,6 +8,7 @@ import {
 import { useMessageId } from '../../../hooks/useMessageId';
 
 const EducationCard = ({
+  isAdmin,
   education,
   degreeShort,
   degreeFull,
@@ -77,7 +78,7 @@ const EducationCard = ({
   };
 
   return (
-    <div className={styles.eduList__item}>
+    <div className={`${styles.eduList__item} ${isAdmin ? styles.eduList__itemAdm : ""}`}>
       <div className={styles.eduList__data}>
         <Input
           label="Short degree:"

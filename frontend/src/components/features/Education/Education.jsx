@@ -37,7 +37,7 @@ const Education = ({ isAdmin = false }) => {
             onClick={() => navigate(-1)}
           />
           <div className="wrapper">
-            <h1 style={{ fontWeight: 400 }}>Education</h1>
+            <h1 style={{ fontWeight: 400 }}>New education</h1>
             <NewEducation onSuccess={() => loadEdu()} />
             <EducationList
               isAdmin={true}

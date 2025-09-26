@@ -7,9 +7,11 @@ const EducationList = ({ educations, isAdmin, onSuccess }) => {
     <div className={styles.eduList}>
       {isAdmin ? (
         // показывать для админа
-        <>
+        <div className={styles.eduList__wrapper}>
+          <h1>Educations</h1>
           {educations.map(edu => (
             <EducationCard
+              isAdmin={isAdmin}
               onSuccess={onSuccess}
               key={edu.id}
               education={edu}
@@ -20,7 +22,7 @@ const EducationList = ({ educations, isAdmin, onSuccess }) => {
               yearEnd={edu.yearEnd}
             />
           ))}
-        </>
+        </div>
       ) : (
         // показывать на главной странице
         <>
@@ -36,7 +38,9 @@ const EducationList = ({ educations, isAdmin, onSuccess }) => {
                   {edu.degreeShort}
                 </h1>
                 {/* ПК */}
-                <p className={`${styles.eduList__eduPc}`}>{edu.degreeFull}</p>
+                <p className={`${styles.eduList__eduPc}`}>
+                  {edu.degreeFull}
+                </p>
 
                 {/* Мобилки */}
                 <div className={styles.eduList__eduMobile}>

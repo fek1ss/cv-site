@@ -22,7 +22,7 @@ const Admin = () => {
       <div className={styles.admin__wrapper}>
         <MdArrowBack
           className={styles.admin__back}
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
         />
         <h1>Welcome, {user.name}</h1>
         <h4>What do you want to edit?</h4>
