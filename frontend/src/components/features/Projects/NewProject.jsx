@@ -14,16 +14,7 @@ const NewProject = ({ onSuccess }) => {
   const { message, showMessage } = useMessage();
 
   const handleCreate = async () => {
-    if (
-      name === '' ||
-      description === '' ||
-      dateStart === '' ||
-      dateEnd === '' ||
-      link === ''
-    ) {
-      showMessage('fill in all fields', true);
-      return;
-    }
+
     try {
       const data = await createProject({
         name,

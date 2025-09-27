@@ -21,7 +21,7 @@ const Books = ({ isAdmin = false }) => {
         .catch(() => navigate('/login'));
     }
     loadBooks();
-  }, [isAdmin, navigate]);
+  }, [isAdmin]);
 
   const loadBooks = () => {
     getBooks().then(data => setBooks(data));

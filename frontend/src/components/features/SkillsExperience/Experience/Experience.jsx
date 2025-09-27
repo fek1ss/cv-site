@@ -27,7 +27,7 @@ const Experience = ({ isAdmin = false }) => {
     }
 
     loadExp();
-  }, [navigate, isAdmin]);
+  }, [isAdmin]);
 
   const loadExp = async () => {
     try {

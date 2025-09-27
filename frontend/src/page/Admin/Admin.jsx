@@ -24,7 +24,7 @@ const Admin = () => {
           className={styles.admin__back}
           onClick={() => navigate('/')}
         />
-        <h1>Welcome, {user.name}</h1>
+        <h1>Welcome, Alex</h1>
         <h4>What do you want to edit?</h4>
         <nav className={styles.admin__nav}>
           <Link to="/admin/hero"> Hero </Link>

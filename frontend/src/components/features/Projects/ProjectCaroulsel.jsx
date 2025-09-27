@@ -4,14 +4,10 @@ import { useEffect, useState } from 'react';
 import { getProject } from '../../../api/projectApi';
 import { normalizeDate } from '../../../utils/normalizeDate';
 
-const ProjectCarousel = () => {
-  const [projects, setProjects] = useState([]);
-
-  useEffect(() => {
-    getProject().then(data => {
-      setProjects(data);
-    });
-  });
+const ProjectCarousel = ({projects}) => {
+  if (!projects.length) {
+    return <p>No projects available</p>;
+  }
 
   return (
     <Carousel className={styles.carousel}>

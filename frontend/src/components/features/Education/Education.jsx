@@ -20,7 +20,7 @@ const Education = ({ isAdmin = false }) => {
         .catch(() => navigate('/login'));
     }
     loadEdu();
-  }, [isAdmin, navigate]);
+  }, [isAdmin]);
 
   const loadEdu = () => {
     getEducations().then(data => setEducations(data));

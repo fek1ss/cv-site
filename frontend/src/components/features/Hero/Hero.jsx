@@ -32,7 +32,7 @@ const Hero = ({ isAdmin = false }) => {
       setText(data[0].summary);
       setImg(data[0].photoUrl);
     });
-  }, [navigate, isAdmin]);
+  }, [isAdmin]);
 
   const handleUpdate = async e => {
     e.preventDefault();

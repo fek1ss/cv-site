@@ -29,7 +29,7 @@ const Articles = ({ isAdmin = false }) => {
     }
 
     loadArts();
-  }, [navigate, isAdmin]);
+  }, [isAdmin]);
 
   const loadArts = async () => {
     await getArticles().then(data => setArticles(data));

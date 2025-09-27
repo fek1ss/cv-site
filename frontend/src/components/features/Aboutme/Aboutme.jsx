@@ -25,7 +25,7 @@
         .then(data => {
           setText(data[0].text);
         })
-    }, [isAdmin, navigate]);
+    }, [isAdmin]);
 
 
     const handleUpdate = async e => {

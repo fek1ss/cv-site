@@ -25,9 +25,16 @@ const Project = ({ isAdmin = false }) => {
       me()
         .then(() => setStatus(true))
         .catch(() => navigate('/login'));
+    }else {
+      prjLoad(); // если не админ — просто грузим проекты
     }
-    prjLoad();
-  }, [isAdmin, navigate]);
+  }, [isAdmin]);
+
+  useEffect(() => {
+    if (isAdmin && status) {
+      prjLoad();
+    }
+  }, [isAdmin, status]);
 
   if (isAdmin && !status) return <p>loading...</p>;
 
@@ -88,7 +95,7 @@ const Project = ({ isAdmin = false }) => {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
               >
-                <ProjectCarousel />
+                <ProjectCarousel projects={projects} />
               </motion.div>
             )}
           </AnimatePresence>
