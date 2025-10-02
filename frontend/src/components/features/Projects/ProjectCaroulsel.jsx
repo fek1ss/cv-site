@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { getProject } from '../../../api/projectApi';
 import { normalizeDate } from '../../../utils/normalizeDate';
 
-const ProjectCarousel = ({projects}) => {
+const ProjectCarousel = ({ projects }) => {
   if (!projects.length) {
     return <p>No projects available</p>;
   }
@@ -22,7 +22,10 @@ const ProjectCarousel = ({projects}) => {
             </div>
             <div className={styles.slideContent__darkImage}>
               <a href={prj.link}>Link</a>
-              <img src={prj.imageUrl || '../../../../public/assets/project.png '} alt="Project preview" />
+              <img
+                src={prj.imageUrl || '/assets/project.png'}
+                alt="Project preview"
+              />
             </div>
           </div>
         </Carousel.Item>
