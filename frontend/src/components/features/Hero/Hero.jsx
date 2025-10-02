@@ -8,6 +8,7 @@ import { me } from '../../../api/userApi';
 import { getHero, updateHero } from '../../../api/heroApi';
 
 const Hero = ({ isAdmin = false }) => {
+  const [heroId, setHeroId] = useState(null);
   const [name, setName] = useState('');
   const [text, setText] = useState('');
   const [photo, setPhoto] = useState(null);
@@ -28,21 +29,34 @@ const Hero = ({ isAdmin = false }) => {
     }
 
     getHero().then(data => {
-      setName(data[0].name);
-      setText(data[0].summary);
-      setImg(data[0].photoUrl);
+      if (data && data.length > 0) {
+        setHeroId(data[0].id);
+        setName(data[0].name || '');
+        setText(data[0].summary || '');
+        setImg(data[0].photoUrl || '');
+      } else {
+        setHeroId(null);
+        setName('');
+        setText('');
+        setImg(null);
+      }
     });
   }, [isAdmin]);
 
   const handleUpdate = async e => {
     e.preventDefault();
+    if (!heroId) return;
+
     try {
       const formData = new FormData();
       formData.append('name', name);
       formData.append('summary', text);
-      formData.append('photo', photo);
-      const data = await updateHero(formData);
-      if (data.message) {
+      if (photo) {
+        formData.append('photo', photo);
+      }
+
+      const data = await updateHero(heroId, formData);
+      if (data && data.message) {
         showMessage(data.message, false);
       }
     } catch (err) {
@@ -85,7 +99,7 @@ const Hero = ({ isAdmin = false }) => {
                   <button type="submit" className="save-btn">
                     Save
                   </button>
-                  
+
                   {message && (
                     <p
                       className={

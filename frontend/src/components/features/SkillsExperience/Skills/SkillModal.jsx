@@ -5,7 +5,7 @@ import { updateSkills } from '../../../../api/skillsApi';
 import Input from './../../../Input/Input';
 import BaseModal from '../../../BaseModal/BaseModal';
 
-const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
+const SkillModal = ({ skill, onClose, onDelete, onCreate, onUpdate }) => {
   const isEditing = skill.id;
   const [name, setName] = useState(skill.name || '');
   const [icon, setIcon] = useState(null);
@@ -19,8 +19,9 @@ const SkillModal = ({ skill, onClose, onDelete, onCreate }) => {
         showMessage(data.error, true);
         return;
       }
-
+      
       onClose();
+      onUpdate();
     } catch (err) {
       console.log(err);
     }

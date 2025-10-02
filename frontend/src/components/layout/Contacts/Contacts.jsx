@@ -34,15 +34,15 @@ const Contacts = ({ isAdmin = false }) => {
     });
   };
 
-  const handleUpdate = async (label, link, id) => {
+  const handleUpdate = async (label, link, id, icon) => {
     try {
       const data = await updateContact(label, link, icon, id);
       if (data.message === 'Contact updated') {
         loadCont();
-        showMessage(data.message || 'Updated success', false, id)
+        showMessage(data.message || 'Updated success', false, id);
       }
     } catch (err) {
-      showMessage(`Error updating: ${err}`, true, id)
+      showMessage(`Error updating: ${err}`, true, id);
     }
   };
 
@@ -51,10 +51,10 @@ const Contacts = ({ isAdmin = false }) => {
       const data = await deleteContact(id);
       if (data.status === 200) {
         loadCont();
-        showMessage('Updated success', false, id)
+        showMessage('Updated success', false, id);
       }
     } catch (err) {
-      showMessage('Error delete', true, id)
+      showMessage('Error delete', true, id);
     }
   };
 
@@ -87,7 +87,11 @@ const Contacts = ({ isAdmin = false }) => {
                     <input
                       className={styles.conItem__inp_icon}
                       type="file"
-                      onChange={e => setIcon(e.target.files[0])}
+                      onChange={e => {
+                        const newContacts = [...contacts];
+                        newContacts[idx].icon = e.target.files[0]; 
+                        setContacts(newContacts);
+                      }}
                     />
                     <label>
                       Contact:
@@ -134,7 +138,12 @@ const Contacts = ({ isAdmin = false }) => {
                     <button
                       className="save-btn"
                       onClick={() =>
-                        handleUpdate(cont.label, cont.link, cont.id)
+                        handleUpdate(
+                          cont.label,
+                          cont.link,
+                          cont.id,
+                          cont.icon,
+                        )
                       }
                     >
                       update

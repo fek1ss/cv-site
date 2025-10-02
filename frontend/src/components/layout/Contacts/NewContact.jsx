@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styles from '../../../styles/newFeature.module.scss';
 import { addContanct } from '../../../api/contactApi';
 import { useMessage } from '../../../hooks/useMessage';
@@ -9,6 +9,7 @@ const NewContact = ({ onLoad }) => {
   const [link, setLink] = useState('');
   const [icon, setIcon] = useState(null);
   const { message, showMessage } = useMessage();
+  const fileInputRef = useRef(null);
 
   const handleAddContact = async () => {
     if (label === '' && link === '') {
@@ -23,6 +24,9 @@ const NewContact = ({ onLoad }) => {
         showMessage(data.message, false);
         setLabel('');
         setLink('');
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ''; // 👈 очистка file input
+        }
       }
     } catch (err) {
       showMessage('Error during the update', true);
@@ -36,6 +40,7 @@ const NewContact = ({ onLoad }) => {
           label="Icon: "
           type="file"
           onChange={setIcon}
+          ref={fileInputRef}
           color="white"
         />
         <Input

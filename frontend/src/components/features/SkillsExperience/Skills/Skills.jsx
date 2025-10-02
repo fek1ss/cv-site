@@ -121,6 +121,7 @@ const Skills = ({ isAdmin = false }) => {
           </div>
           {selectedSkills && (
             <SkillModal
+              onUpdate={loadSkills}
               onClose={() => setSelectedSkills(null)}
               onDelete={handleDelete}
               onCreate={handleCreate}
