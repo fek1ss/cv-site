@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-const Input = ({ label, value, onChange, type, color, ref }) => {
+const Input = ({ label, value, onChange, type, color }) => {
   return (
     <label className={styles.label}>
       <p className={styles.label__name} style={{ color }}>
@@ -40,7 +40,6 @@ const Input = ({ label, value, onChange, type, color, ref }) => {
           className={styles.inputFile}
           type="file"
           onChange={e => onChange(e.target.files[0])}
-          ref={ref}
         />
       )}
     </label>
