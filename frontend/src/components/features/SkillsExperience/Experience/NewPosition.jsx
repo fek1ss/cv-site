@@ -33,7 +33,6 @@ const NewPosition = ({ companyId, onSuccess }) => {
         setStartDate('');
         setEndDate('');
         showMessage('created', false);
-        onSuccess();
       }
     } catch (e) {
       showMessage('something wrong...');
@@ -94,6 +93,12 @@ const NewPosition = ({ companyId, onSuccess }) => {
 
         <div className={styles.newExp__buttons}>
           <button onClick={handleCreate}>Submit</button>
+          {
+            !message?.error &&
+            title === '' &&
+            startDate === '' && (
+              <button onClick={onSuccess}>Save</button>
+            )}
         </div>
       </form>
       {
