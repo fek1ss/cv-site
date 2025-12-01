@@ -52,11 +52,6 @@ const ExperienceModal = ({ experience, onClose }) => {
   };
 
   const handleUpdateCompany = async () => {
-    if (name === experience.name) {
-      showMessage('No changes in the name', true, experience.id)
-      return;
-    }
-
     try {
       const res = await updateCompany({
         name,
